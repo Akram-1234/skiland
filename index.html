@@ -1,1531 +1,1100 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أصناف الاسانس بالسكيلاند</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-primary: #0a0a1a;
-            --bg-secondary: #12122a;
-            --bg-card: #1a1a3e;
-            --bg-item: #222255;
-            --bg-item-hover: #2a2a6a;
-            --text-primary: #ffffff;
-            --text-secondary: #b8b8d4;
-            --accent-1: #7c3aed;
-            --accent-2: #a855f7;
-            --accent-3: #c084fc;
-            --gold: #fbbf24;
-            --gold-light: #fde68a;
-            --gradient-1: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
-            --gradient-2: linear-gradient(135deg, #1a1a3e, #2a2a6a);
-            --gradient-3: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #ec4899 100%);
-            --gradient-gold: linear-gradient(135deg, #f59e0b, #fbbf24, #fde68a);
-            --shadow-lg: 0 20px 60px rgba(124, 58, 237, 0.15);
-            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
-            --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.2);
-            --border-radius: 20px;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(ellipse at 20% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-2);
-            border-radius: 50%;
-            opacity: 0;
-            animation: floatParticle 8s infinite;
-        }
-
-        @keyframes floatParticle {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.3; }
-            100% { transform: translateY(-20vh) scale(1); opacity: 0; }
-        }
-
-        .header {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 50px 20px 30px;
-        }
-
-        .header-logo {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 20px;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 50px rgba(124, 58, 237, 0.4);
-            animation: pulseGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.4); }
-            50% { box-shadow: 0 0 60px rgba(124, 58, 237, 0.6), 0 0 100px rgba(168, 85, 247, 0.3); }
-        }
-
-        .header-logo i {
-            font-size: 40px;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            background: var(--gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
-        .header p {
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-            font-weight: 300;
-        }
-
-        /* تنبيه ذكي للبحث */
-        .search-hint {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-
-        .search-hint .hint-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            color: #6ee7b7;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .search-hint .hint-badge i {
-            color: #34d399;
-        }
-
-        .stats-bar {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            padding: 20px;
-            margin-bottom: 10px;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--bg-card);
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-2);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .stat-item i {
-            color: var(--accent-2);
-            font-size: 1.2rem;
-        }
-
-        .stat-number {
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: var(--accent-3);
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .search-container {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            background: rgba(10, 10, 26, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
-        }
-
-        .search-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 650px;
-        }
-
-        .search-wrapper i.search-icon {
-            position: absolute;
-            left: 22px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-2);
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .clear-btn {
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(239, 68, 68, 0.2);
-            border: none;
-            color: #f87171;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .clear-btn:hover {
-            background: rgba(239, 68, 68, 0.4);
-        }
-
-        .clear-btn.visible {
-            display: flex;
-        }
-
-        #searchInput {
-            width: 100%;
-            padding: 18px 55px 18px 55px;
-            font-size: 17px;
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 500;
-            border-radius: 60px;
-            border: 2px solid rgba(124, 58, 237, 0.3);
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            outline: none;
-            box-shadow: var(--shadow-card);
-            transition: var(--transition);
-        }
-
-        #searchInput::placeholder {
-            color: #6b6b8d;
-            font-weight: 300;
-        }
-
-        #searchInput:focus {
-            border-color: var(--accent-2);
-            box-shadow: var(--shadow-card), 0 0 30px rgba(124, 58, 237, 0.2);
-            background: var(--bg-card);
-        }
-
-        .search-results-info {
-            display: none;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .search-results-info.visible {
-            display: flex;
-        }
-
-        .search-results-info .count-badge {
-            background: var(--gradient-1);
-            color: white;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-
-        .filter-bar {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            padding: 25px 20px;
-        }
-
-        .filter-btn {
-            padding: 10px 24px;
-            border-radius: 50px;
-            border: 2px solid rgba(124, 58, 237, 0.3);
-            background: transparent;
-            color: var(--text-secondary);
-            font-family: 'Tajawal', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .filter-btn:hover {
-            border-color: var(--accent-2);
-            color: var(--accent-3);
-            background: rgba(124, 58, 237, 0.1);
-        }
-
-        .filter-btn.active {
-            background: var(--gradient-1);
-            border-color: transparent;
-            color: white;
-            font-weight: 700;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 25px;
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 0 20px 50px;
-        }
-
-        .category-card {
-            background: var(--bg-card);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-            border: 1px solid rgba(124, 58, 237, 0.1);
-            transition: var(--transition);
-            animation: slideUp 0.6s ease forwards;
-            opacity: 0;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-card), var(--shadow-glow);
-            border-color: rgba(124, 58, 237, 0.3);
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .category-card:nth-child(1) { animation-delay: 0.05s; }
-        .category-card:nth-child(2) { animation-delay: 0.1s; }
-        .category-card:nth-child(3) { animation-delay: 0.15s; }
-        .category-card:nth-child(4) { animation-delay: 0.2s; }
-        .category-card:nth-child(5) { animation-delay: 0.25s; }
-        .category-card:nth-child(6) { animation-delay: 0.3s; }
-        .category-card:nth-child(7) { animation-delay: 0.35s; }
-        .category-card:nth-child(8) { animation-delay: 0.4s; }
-        .category-card:nth-child(9) { animation-delay: 0.45s; }
-        .category-card:nth-child(10) { animation-delay: 0.5s; }
-        .category-card:nth-child(11) { animation-delay: 0.55s; }
-
-        .category-title {
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            user-select: none;
-            transition: var(--transition);
-        }
-
-        .category-card[data-type="men"] .category-title {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(99, 102, 241, 0.1));
-            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .category-card[data-type="women"] .category-title {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(244, 114, 182, 0.1));
-            border-bottom: 2px solid rgba(236, 72, 153, 0.3);
-        }
-
-        .category-card[data-type="counter-men"] .category-title {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(52, 211, 153, 0.1));
-            border-bottom: 2px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .category-card[data-type="counter-women"] .category-title {
-            background: linear-gradient(135deg, rgba(251, 146, 60, 0.15), rgba(251, 191, 36, 0.1));
-            border-bottom: 2px solid rgba(251, 146, 60, 0.3);
-        }
-
-        .category-card[data-type="oriental"] .category-title {
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(253, 230, 138, 0.1));
-            border-bottom: 2px solid rgba(251, 191, 36, 0.3);
-        }
-
-        .title-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .title-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .category-card[data-type="men"] .title-icon { background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; }
-        .category-card[data-type="women"] .title-icon { background: linear-gradient(135deg, #ec4899, #f472b6); color: white; }
-        .category-card[data-type="counter-men"] .title-icon { background: linear-gradient(135deg, #10b981, #34d399); color: white; }
-        .category-card[data-type="counter-women"] .title-icon { background: linear-gradient(135deg, #fb923c, #fbbf24); color: white; }
-        .category-card[data-type="oriental"] .title-icon { background: var(--gradient-gold); color: #78350f; }
-
-        .title-text h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .category-card[data-type="men"] .title-text h3 { color: #93c5fd; }
-        .category-card[data-type="women"] .title-text h3 { color: #f9a8d4; }
-        .category-card[data-type="counter-men"] .title-text h3 { color: #6ee7b7; }
-        .category-card[data-type="counter-women"] .title-text h3 { color: #fdba74; }
-        .category-card[data-type="oriental"] .title-text h3 { color: var(--gold-light); }
-
-        .title-text .subtitle {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
-        .item-count {
-            background: rgba(255,255,255,0.1);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-        }
-
-        .toggle-icon {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            margin-right: 8px;
-        }
-
-        .category-card.collapsed .toggle-icon {
-            transform: rotate(-90deg);
-        }
-
-        .perfume-list {
-            list-style: none;
-            padding: 12px;
-            margin: 0;
-            max-height: 450px;
-            overflow-y: auto;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-        }
-
-        .category-card.collapsed .perfume-list {
-            max-height: 0;
-            padding: 0 12px;
-            overflow: hidden;
-        }
-
-        .perfume-list::-webkit-scrollbar { width: 5px; }
-        .perfume-list::-webkit-scrollbar-track { background: transparent; }
-        .perfume-list::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.3); border-radius: 10px; }
-        .perfume-list::-webkit-scrollbar-thumb:hover { background: rgba(124, 58, 237, 0.5); }
-
-        .perfume-item {
-            background: var(--bg-item);
-            margin-bottom: 6px;
-            padding: 12px 16px;
-            border-radius: 12px;
-            transition: var(--transition);
-            font-size: 1rem;
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .perfume-item::before {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            border-radius: 0 3px 3px 0;
-            transition: var(--transition);
-            opacity: 0;
-        }
-
-        .category-card[data-type="men"] .perfume-item::before { background: #3b82f6; }
-        .category-card[data-type="women"] .perfume-item::before { background: #ec4899; }
-        .category-card[data-type="counter-men"] .perfume-item::before { background: #10b981; }
-        .category-card[data-type="counter-women"] .perfume-item::before { background: #fb923c; }
-        .category-card[data-type="oriental"] .perfume-item::before { background: #fbbf24; }
-
-        .perfume-item:hover::before { opacity: 1; }
-
-        .perfume-item:hover {
-            background: var(--bg-item-hover);
-            border-color: rgba(124, 58, 237, 0.2);
-            transform: translateX(-4px);
-        }
-
-        .perfume-item .item-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .category-card[data-type="men"] .item-dot { background: #3b82f6; }
-        .category-card[data-type="women"] .item-dot { background: #ec4899; }
-        .category-card[data-type="counter-men"] .item-dot { background: #10b981; }
-        .category-card[data-type="counter-women"] .item-dot { background: #fb923c; }
-        .category-card[data-type="oriental"] .item-dot { background: #fbbf24; }
-
-        .perfume-item.highlight {
-            border-color: var(--accent-2);
-            animation: highlightPulse 1s ease;
-        }
-
-        .category-card[data-type="men"] .perfume-item.highlight { background: rgba(59, 130, 246, 0.15); border-color: #3b82f6; }
-        .category-card[data-type="women"] .perfume-item.highlight { background: rgba(236, 72, 153, 0.15); border-color: #ec4899; }
-        .category-card[data-type="counter-men"] .perfume-item.highlight { background: rgba(16, 185, 129, 0.15); border-color: #10b981; }
-        .category-card[data-type="counter-women"] .perfume-item.highlight { background: rgba(251, 146, 60, 0.15); border-color: #fb923c; }
-        .category-card[data-type="oriental"] .perfume-item.highlight { background: rgba(251, 191, 36, 0.15); border-color: #fbbf24; }
-
-        @keyframes highlightPulse {
-            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
-            70% { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
-        }
-
-        #noResults {
-            display: none;
-            text-align: center;
-            padding: 60px 20px;
-            grid-column: 1 / -1;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        #noResults .no-results-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 25px;
-            background: rgba(239, 68, 68, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #noResults .no-results-icon i { font-size: 45px; color: #ef4444; }
-        #noResults h3 { font-size: 1.6rem; color: #ef4444; margin-bottom: 10px; }
-        #noResults p { color: var(--text-secondary); font-size: 1rem; }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient-1);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
-            transition: var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 999;
-        }
-
-        .back-to-top.visible { opacity: 1; visibility: visible; }
-        .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 6px 30px rgba(124, 58, 237, 0.6); }
-
-        .footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 30px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(124, 58, 237, 0.1);
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 { font-size: 1.9rem; }
-            .header p { font-size: 1rem; }
-            .container { grid-template-columns: 1fr; padding: 0 12px 40px; }
-            .stats-bar { gap: 10px; }
-            .stat-item { padding: 8px 16px; font-size: 0.85rem; }
-            .filter-bar { gap: 8px; padding: 15px 12px; }
-            .filter-btn { padding: 8px 16px; font-size: 0.85rem; }
-            #searchInput { padding: 15px 50px 15px 50px; font-size: 15px; }
-            .header-logo { width: 70px; height: 70px; }
-            .header-logo i { font-size: 30px; }
-        }
-
-        @media (max-width: 400px) {
-            .header h1 { font-size: 1.6rem; }
-            .stat-item { padding: 6px 12px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أصناف الاسانس بالسكيلاند</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #12122a;
+  --bg-card: #1a1a3e;
+  --bg-item: #222255;
+  --bg-item-hover: #2a2a6a;
+  --text-primary: #ffffff;
+  --text-secondary: #b8b8d4;
+  --accent-1: #7c3aed;
+  --accent-2: #a855f7;
+  --accent-3: #c084fc;
+  --gold: #fbbf24;
+  --gold-light: #fde68a;
+  --gradient-1: linear-gradient(135deg, #7c3aed, #a855f7, #c084fc);
+  --gradient-3: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #ec4899 100%);
+  --gradient-gold: linear-gradient(135deg, #f59e0b, #fbbf24, #fde68a);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.2);
+  --border-radius: 20px;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Tajawal', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; top:0; left:0; width:100%; height:100%;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(124,58,237,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(168,85,247,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(236,72,153,0.05) 0%, transparent 50%);
+  z-index:0; pointer-events:none;
+}
+.particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
+.particle { position:absolute; width:4px; height:4px; background:var(--accent-2); border-radius:50%; opacity:0; animation: floatParticle 8s infinite; }
+@keyframes floatParticle {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.3; }
+  100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+}
+.header { position:relative; z-index:1; text-align:center; padding:50px 20px 30px; }
+.header-logo {
+  width:90px; height:90px; margin:0 auto 20px; background:var(--gradient-1);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 50px rgba(124,58,237,0.4); animation: pulseGlow 3s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 30px rgba(124,58,237,0.4); }
+  50% { box-shadow: 0 0 60px rgba(124,58,237,0.6), 0 0 100px rgba(168,85,247,0.3); }
+}
+.header-logo i { font-size:40px; color:white; }
+.header h1 {
+  font-size:2.8rem; font-weight:900; background:var(--gradient-3);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:12px; letter-spacing:1px;
+}
+.header p { color:var(--text-secondary); font-size:1.15rem; font-weight:300; }
+.stats-bar { position:relative; z-index:1; display:flex; justify-content:center; gap:30px; flex-wrap:wrap; padding:20px; margin-bottom:10px; }
+.stat-item {
+  display:flex; align-items:center; gap:10px; background:var(--bg-card); padding:12px 24px;
+  border-radius:50px; border:1px solid rgba(124,58,237,0.2); backdrop-filter:blur(10px); transition:var(--transition);
+}
+.stat-item:hover { transform:translateY(-3px); border-color:var(--accent-2); box-shadow:var(--shadow-glow); }
+.stat-item i { color:var(--accent-2); font-size:1.2rem; }
+.stat-number { font-weight:800; font-size:1.3rem; color:var(--accent-3); }
+.stat-label { color:var(--text-secondary); font-size:0.9rem; }
+.search-container {
+  position:sticky; top:0; z-index:1000; padding:20px; display:flex; flex-direction:column;
+  align-items:center; gap:10px; background:rgba(10,10,26,0.9); backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(124,58,237,0.1);
+}
+.search-wrapper { position:relative; width:100%; max-width:650px; }
+.search-wrapper i.search-icon { position:absolute; left:22px; top:50%; transform:translateY(-50%); color:var(--accent-2); font-size:1.2rem; }
+.clear-btn {
+  position:absolute; right:18px; top:50%; transform:translateY(-50%); background:rgba(239,68,68,0.2);
+  border:none; color:#f87171; width:32px; height:32px; border-radius:50%; cursor:pointer;
+  font-size:0.9rem; display:none; align-items:center; justify-content:center; transition:var(--transition);
+}
+.clear-btn:hover { background:rgba(239,68,68,0.4); }
+.clear-btn.visible { display:flex; }
+#searchInput {
+  width:100%; padding:18px 55px 18px 55px; font-size:17px; font-family:'Tajawal',sans-serif;
+  font-weight:500; border-radius:60px; border:2px solid rgba(124,58,237,0.3);
+  background:var(--bg-secondary); color:var(--text-primary); outline:none; box-shadow:var(--shadow-card); transition:var(--transition);
+}
+#searchInput::placeholder { color:#6b6b8d; font-weight:300; }
+#searchInput:focus { border-color:var(--accent-2); box-shadow:var(--shadow-card), 0 0 30px rgba(124,58,237,0.2); background:var(--bg-card); }
+.search-results-info { display:none; align-items:center; gap:8px; font-size:0.9rem; color:var(--text-secondary); }
+.search-results-info.visible { display:flex; }
+.search-results-info .count-badge { background:var(--gradient-1); color:white; padding:3px 12px; border-radius:20px; font-weight:700; font-size:0.85rem; }
+.filter-bar { position:relative; z-index:1; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; padding:25px 20px; }
+.filter-btn {
+  padding:10px 24px; border-radius:50px; border:2px solid rgba(124,58,237,0.3); background:transparent;
+  color:var(--text-secondary); font-family:'Tajawal',sans-serif; font-size:0.95rem; font-weight:500; cursor:pointer; transition:var(--transition);
+}
+.filter-btn:hover { border-color:var(--accent-2); color:var(--accent-3); background:rgba(124,58,237,0.1); }
+.filter-btn.active { background:var(--gradient-1); border-color:transparent; color:white; font-weight:700; box-shadow:0 4px 20px rgba(124,58,237,0.4); }
+.container {
+  position:relative; z-index:1; display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr));
+  gap:25px; max-width:1500px; margin:0 auto; padding:0 20px 50px;
+}
+.category-card {
+  background:var(--bg-card); border-radius:var(--border-radius); overflow:hidden; box-shadow:var(--shadow-card);
+  border:1px solid rgba(124,58,237,0.1); transition:var(--transition); animation:slideUp 0.6s ease forwards; opacity:0;
+}
+.category-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-card), var(--shadow-glow); border-color:rgba(124,58,237,0.3); }
+@keyframes slideUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+.category-title { padding:18px 22px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; transition:var(--transition); }
+.category-card[data-type="men"] .category-title { background:linear-gradient(135deg, rgba(59,130,246,0.15), rgba(99,102,241,0.1)); border-bottom:2px solid rgba(59,130,246,0.3); }
+.category-card[data-type="women"] .category-title { background:linear-gradient(135deg, rgba(236,72,153,0.15), rgba(244,114,182,0.1)); border-bottom:2px solid rgba(236,72,153,0.3); }
+.category-card[data-type="counter-men"] .category-title { background:linear-gradient(135deg, rgba(16,185,129,0.15), rgba(52,211,153,0.1)); border-bottom:2px solid rgba(16,185,129,0.3); }
+.category-card[data-type="counter-women"] .category-title { background:linear-gradient(135deg, rgba(251,146,60,0.15), rgba(251,191,36,0.1)); border-bottom:2px solid rgba(251,146,60,0.3); }
+.category-card[data-type="oriental"] .category-title { background:linear-gradient(135deg, rgba(251,191,36,0.15), rgba(253,230,138,0.1)); border-bottom:2px solid rgba(251,191,36,0.3); }
+.title-right { display:flex; align-items:center; gap:12px; }
+.title-icon { width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+.category-card[data-type="men"] .title-icon { background:linear-gradient(135deg,#3b82f6,#6366f1); color:white; }
+.category-card[data-type="women"] .title-icon { background:linear-gradient(135deg,#ec4899,#f472b6); color:white; }
+.category-card[data-type="counter-men"] .title-icon { background:linear-gradient(135deg,#10b981,#34d399); color:white; }
+.category-card[data-type="counter-women"] .title-icon { background:linear-gradient(135deg,#fb923c,#fbbf24); color:white; }
+.category-card[data-type="oriental"] .title-icon { background:var(--gradient-gold); color:#78350f; }
+.title-text h3 { font-size:1.15rem; font-weight:700; margin-bottom:2px; }
+.category-card[data-type="men"] .title-text h3 { color:#93c5fd; }
+.category-card[data-type="women"] .title-text h3 { color:#f9a8d4; }
+.category-card[data-type="counter-men"] .title-text h3 { color:#6ee7b7; }
+.category-card[data-type="counter-women"] .title-text h3 { color:#fdba74; }
+.category-card[data-type="oriental"] .title-text h3 { color:var(--gold-light); }
+.title-text .subtitle { font-size:0.8rem; color:var(--text-secondary); font-weight:300; }
+.item-count { background:rgba(255,255,255,0.1); padding:5px 14px; border-radius:20px; font-size:0.85rem; font-weight:700; color:var(--text-secondary); }
+.toggle-icon { font-size:0.9rem; color:var(--text-secondary); transition:var(--transition); margin-right:8px; }
+.category-card.collapsed .toggle-icon { transform:rotate(-90deg); }
+
+/* الحاوية العامة داخل كل بطاقة */
+.category-body { padding:8px 12px 12px; max-height:520px; overflow-y:auto; transition:max-height .4s ease, padding .4s ease; }
+.category-card.collapsed .category-body { max-height:0; padding:0 12px; overflow:hidden; }
+.category-body::-webkit-scrollbar { width:5px; }
+.category-body::-webkit-scrollbar-track { background:transparent; }
+.category-body::-webkit-scrollbar-thumb { background:rgba(124,58,237,0.3); border-radius:10px; }
+.category-body::-webkit-scrollbar-thumb:hover { background:rgba(124,58,237,0.5); }
+
+/* مجموعة الرف */
+.rack-group { margin-bottom:14px; }
+.rack-group:last-child { margin-bottom:4px; }
+.rack-title {
+  display:flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:800;
+  color:var(--accent-3); padding:6px 10px; margin-bottom:6px;
+  background:rgba(124,58,237,0.08); border-radius:8px; border-right:3px solid var(--accent-2);
+}
+.category-card[data-type="women"] .rack-title { border-right-color:#ec4899; color:#f9a8d4; background:rgba(236,72,153,0.08); }
+.category-card[data-type="oriental"] .rack-title { border-right-color:var(--gold); color:var(--gold-light); background:rgba(251,191,36,0.08); }
+.rack-title i { font-size:0.75rem; }
+
+.perfume-list { list-style:none; padding:0; margin:0; }
+.perfume-item {
+  background:var(--bg-item); margin-bottom:6px; padding:10px 14px; border-radius:12px; transition:var(--transition);
+  font-size:0.98rem; font-weight:400; display:flex; align-items:center; gap:10px; border:1px solid transparent; position:relative; overflow:hidden;
+}
+.perfume-item::before { content:''; position:absolute; right:0; top:0; width:3px; height:100%; border-radius:0 3px 3px 0; transition:var(--transition); opacity:0; }
+.category-card[data-type="men"] .perfume-item::before { background:#3b82f6; }
+.category-card[data-type="women"] .perfume-item::before { background:#ec4899; }
+.category-card[data-type="counter-men"] .perfume-item::before { background:#10b981; }
+.category-card[data-type="counter-women"] .perfume-item::before { background:#fb923c; }
+.category-card[data-type="oriental"] .perfume-item::before { background:#fbbf24; }
+.perfume-item:hover::before { opacity:1; }
+.perfume-item:hover { background:var(--bg-item-hover); border-color:rgba(124,58,237,0.2); transform:translateX(-4px); }
+
+.item-number {
+  background:rgba(255,255,255,0.12); color:var(--text-secondary); font-size:0.72rem; font-weight:800;
+  padding:3px 8px; border-radius:20px; min-width:28px; text-align:center; flex-shrink:0;
+}
+.category-card[data-type="men"] .item-number { background:rgba(59,130,246,0.2); color:#93c5fd; }
+.category-card[data-type="women"] .item-number { background:rgba(236,72,153,0.2); color:#f9a8d4; }
+.category-card[data-type="counter-men"] .item-number { background:rgba(16,185,129,0.2); color:#6ee7b7; }
+.category-card[data-type="counter-women"] .item-number { background:rgba(251,146,60,0.2); color:#fdba74; }
+.category-card[data-type="oriental"] .item-number { background:rgba(251,191,36,0.2); color:var(--gold-light); }
+
+.perfume-item .item-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.category-card[data-type="men"] .item-dot { background:#3b82f6; }
+.category-card[data-type="women"] .item-dot { background:#ec4899; }
+.category-card[data-type="counter-men"] .item-dot { background:#10b981; }
+.category-card[data-type="counter-women"] .item-dot { background:#fb923c; }
+.category-card[data-type="oriental"] .item-dot { background:#fbbf24; }
+
+.perfume-item.highlight { border-color:var(--accent-2); animation: highlightPulse 1s ease; }
+.category-card[data-type="men"] .perfume-item.highlight { background:rgba(59,130,246,0.15); border-color:#3b82f6; }
+.category-card[data-type="women"] .perfume-item.highlight { background:rgba(236,72,153,0.15); border-color:#ec4899; }
+.category-card[data-type="counter-men"] .perfume-item.highlight { background:rgba(16,185,129,0.15); border-color:#10b981; }
+.category-card[data-type="counter-women"] .perfume-item.highlight { background:rgba(251,146,60,0.15); border-color:#fb923c; }
+.category-card[data-type="oriental"] .perfume-item.highlight { background:rgba(251,191,36,0.15); border-color:#fbbf24; }
+@keyframes highlightPulse {
+  0% { box-shadow:0 0 0 0 rgba(124,58,237,0.4); }
+  70% { box-shadow:0 0 0 8px rgba(124,58,237,0); }
+  100% { box-shadow:0 0 0 0 rgba(124,58,237,0); }
+}
+.rack-group.hidden-rack { display:none; }
+
+#noResults { display:none; text-align:center; padding:60px 20px; grid-column:1/-1; animation:fadeIn .4s ease; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+#noResults .no-results-icon { width:100px; height:100px; margin:0 auto 25px; background:rgba(239,68,68,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; }
+#noResults .no-results-icon i { font-size:45px; color:#ef4444; }
+#noResults h3 { font-size:1.6rem; color:#ef4444; margin-bottom:10px; }
+#noResults p { color:var(--text-secondary); font-size:1rem; }
+.back-to-top {
+  position:fixed; bottom:30px; left:30px; width:50px; height:50px; border-radius:50%; background:var(--gradient-1);
+  color:white; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.2rem;
+  box-shadow:0 4px 20px rgba(124,58,237,0.4); transition:var(--transition); opacity:0; visibility:hidden; z-index:999;
+}
+.back-to-top.visible { opacity:1; visibility:visible; }
+.back-to-top:hover { transform:translateY(-3px); box-shadow:0 6px 30px rgba(124,58,237,0.6); }
+.footer { position:relative; z-index:1; text-align:center; padding:30px; color:var(--text-secondary); font-size:0.9rem; border-top:1px solid rgba(124,58,237,0.1); margin-top:20px; }
+@media (max-width:768px) {
+  .header h1 { font-size:1.9rem; }
+  .container { grid-template-columns:1fr; padding:0 12px 40px; }
+  .stat-item { padding:8px 16px; font-size:0.85rem; }
+  .filter-btn { padding:8px 16px; font-size:0.85rem; }
+  #searchInput { padding:15px 50px 15px 50px; font-size:15px; }
+  .header-logo { width:70px; height:70px; }
+}
+</style>
 </head>
 <body>
 
-    <div class="particles" id="particles"></div>
+<div class="particles" id="particles"></div>
 
-    <div class="header">
-        <div class="header-logo">
-            <i class="fas fa-flask"></i>
-        </div>
-        <h1>أصناف الاسانس بالسكيلاند</h1>
-        <p>ابحث عن العطر المفضل لديك وسنحدد لك مكانه فوراً</p>
+<div class="header">
+  <div class="header-logo"><i class="fas fa-flask"></i></div>
+  <h1>أصناف الاسانس بالسكيلاند</h1>
+  <p>ابحث عن العطر المفضل لديك وسنحدد لك مكانه فوراً</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><i class="fas fa-spray-can-sparkles"></i><span class="stat-number" id="totalCount">0</span><span class="stat-label">عطر</span></div>
+  <div class="stat-item"><i class="fas fa-boxes-stacked"></i><span class="stat-number" id="categoryCount">0</span><span class="stat-label">قسم</span></div>
+  <div class="stat-item"><i class="fas fa-mars"></i><span class="stat-number" id="menCount">0</span><span class="stat-label">رجالي</span></div>
+  <div class="stat-item"><i class="fas fa-venus"></i><span class="stat-number" id="womenCount">0</span><span class="stat-label">نسائي</span></div>
+</div>
+
+<div class="search-container">
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" onkeyup="searchPerfumes()" placeholder="اكتب اسم العطر أو رقمه للبحث السريع...">
+    <i class="fas fa-search search-icon"></i>
+    <button class="clear-btn" id="clearBtn" onclick="clearSearch()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="search-results-info" id="searchResultsInfo">
+    <i class="fas fa-check-circle" style="color:#34d399;"></i>
+    <span>تم العثور على</span>
+    <span class="count-badge" id="resultsCount">0</span>
+    <span>نتيجة</span>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCategory('all', this)"><i class="fas fa-layer-group"></i> الكل</button>
+  <button class="filter-btn" onclick="filterCategory('men', this)"><i class="fas fa-mars"></i> رجالي</button>
+  <button class="filter-btn" onclick="filterCategory('women', this)"><i class="fas fa-venus"></i> نسائي</button>
+  <button class="filter-btn" onclick="filterCategory('counter-men', this)"><i class="fas fa-store"></i> رجالي كونتوار</button>
+  <button class="filter-btn" onclick="filterCategory('counter-women', this)"><i class="fas fa-store"></i> نسائي كونتوار</button>
+  <button class="filter-btn" onclick="filterCategory('oriental', this)"><i class="fas fa-star"></i> حويجلات</button>
+</div>
+
+<div class="container" id="mainContainer">
+
+<!-- ============ خزانة 1 ============ -->
+<div class="category-card" data-type="men">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-mars"></i></div>
+      <div class="title-text"><h3>خزانة رقم (1)</h3><span class="subtitle">رجالي</span></div>
     </div>
-
-    
-
-    <div class="stats-bar">
-        <div class="stat-item">
-            <i class="fas fa-spray-can-sparkles"></i>
-            <span class="stat-number" id="totalCount">0</span>
-            <span class="stat-label">عطر</span>
-        </div>
-        <div class="stat-item">
-            <i class="fas fa-boxes-stacked"></i>
-            <span class="stat-number" id="categoryCount">0</span>
-            <span class="stat-label">قسم</span>
-        </div>
-        <div class="stat-item">
-            <i class="fas fa-mars"></i>
-            <span class="stat-number" id="menCount">0</span>
-            <span class="stat-label">رجالي</span>
-        </div>
-        <div class="stat-item">
-            <i class="fas fa-venus"></i>
-            <span class="stat-number" id="womenCount">0</span>
-            <span class="stat-label">نسائي</span>
-        </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 1</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">1</span><span class="item-dot"></span>لومال Jpg</li>
+        <li class="perfume-item"><span class="item-number">2</span><span class="item-dot"></span>اترنتي رجالي</li>
+        <li class="perfume-item"><span class="item-number">3</span><span class="item-dot"></span>بوتلد Hugoboss</li>
+        <li class="perfume-item"><span class="item-number">4</span><span class="item-dot"></span>باشا Cartier</li>
+        <li class="perfume-item"><span class="item-number">5</span><span class="item-dot"></span>اربيان تونكا Montal</li>
+        <li class="perfume-item"><span class="item-number">6</span><span class="item-dot"></span>رجالي Sixsy 212</li>
+        <li class="perfume-item"><span class="item-number">7</span><span class="item-dot"></span>كركي ترزيانا تريبزي</li>
+        <li class="perfume-item"><span class="item-number">8</span><span class="item-dot"></span>بوس انموشن - رجالي</li>
+        <li class="perfume-item"><span class="item-number">9</span><span class="item-dot"></span>دي مارلي</li>
+        <li class="perfume-item"><span class="item-number">10</span><span class="item-dot"></span>سكيب - رجالي</li>
+        <li class="perfume-item"><span class="item-number">11</span><span class="item-dot"></span>ذا غيم - رجالي</li>
+        <li class="perfume-item"><span class="item-number">12</span><span class="item-dot"></span>غوتشي باي غوتشي</li>
+      </ul>
     </div>
-
-    <div class="search-container">
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" onkeyup="searchPerfumes()" placeholder="اكتب اسم العطر هنا للبحث السريع...">
-            <i class="fas fa-search search-icon"></i>
-            <button class="clear-btn" id="clearBtn" onclick="clearSearch()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="search-results-info" id="searchResultsInfo">
-            <i class="fas fa-check-circle" style="color: #34d399;"></i>
-            <span>تم العثور على</span>
-            <span class="count-badge" id="resultsCount">0</span>
-            <span>نتيجة</span>
-        </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 2</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">13</span><span class="item-dot"></span>هوغو بوس - رجالي</li>
+        <li class="perfume-item"><span class="item-number">14</span><span class="item-dot"></span>أرماني كود</li>
+        <li class="perfume-item"><span class="item-number">15</span><span class="item-dot"></span>فلور ناركوتيك</li>
+        <li class="perfume-item"><span class="item-number">16</span><span class="item-dot"></span>شيخ الشيوخ Lattafa</li>
+        <li class="perfume-item"><span class="item-number">17</span><span class="item-dot"></span>لاكوست تشالينج - رجالي</li>
+        <li class="perfume-item"><span class="item-number">18</span><span class="item-dot"></span>بولو بلو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">19</span><span class="item-dot"></span>عود الأبياد</li>
+        <li class="perfume-item"><span class="item-number">20</span><span class="item-dot"></span>ليتون دي مارلي</li>
+        <li class="perfume-item"><span class="item-number">21</span><span class="item-dot"></span>بانشولي انتنس</li>
+        <li class="perfume-item"><span class="item-number">22</span><span class="item-dot"></span>بورن ان روما Valinteno</li>
+      </ul>
     </div>
+  </div>
+</div>
 
-    <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterCategory('all', this)">
-            <i class="fas fa-layer-group"></i> الكل
-        </button>
-        <button class="filter-btn" onclick="filterCategory('men', this)">
-            <i class="fas fa-mars"></i> رجالي
-        </button>
-        <button class="filter-btn" onclick="filterCategory('women', this)">
-            <i class="fas fa-venus"></i> نسائي
-        </button>
-        <button class="filter-btn" onclick="filterCategory('counter-men', this)">
-            <i class="fas fa-store"></i> كونتوار رجالي
-        </button>
-        <button class="filter-btn" onclick="filterCategory('counter-women', this)">
-            <i class="fas fa-store"></i> كونتوار نسائي
-        </button>
-        <button class="filter-btn" onclick="filterCategory('oriental', this)">
-            <i class="fas fa-star"></i> حويجلات
-        </button>
+<!-- ============ خزانة 2 ============ -->
+<div class="category-card" data-type="men">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-mars"></i></div>
+      <div class="title-text"><h3>خزانة رقم (2)</h3><span class="subtitle">رجالي</span></div>
     </div>
-
-    <div class="container" id="mainContainer">
-
-        <!-- رجالي خزانة 1 -->
-        <div class="category-card" data-type="men">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-mars"></i></div>
-                    <div class="title-text">
-                        <h3>خزانة رقم (1)</h3>
-                        <span class="subtitle">رجالي</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>مسك باودر</li>
-                <li class="perfume-item"><span class="item-dot"></span>مسك سلفر ٢٥٠</li>
-                <li class="perfume-item"><span class="item-dot"></span>مسك اربابورا</li>
-                <li class="perfume-item"><span class="item-dot"></span>مسك سلفر سنت</li>
-                <li class="perfume-item"><span class="item-dot"></span>مسك مون سباركلي</li>
-                <li class="perfume-item"><span class="item-dot"></span>كيركي-Kirki</li>
-                <li class="perfume-item"><span class="item-dot"></span>jbg لومال</li>
-                <li class="perfume-item"><span class="item-dot"></span>بوس انموشن</li>
-                <li class="perfume-item"><span class="item-dot"></span>اتيرنتي رجالي</li>
-                <li class="perfume-item"><span class="item-dot"></span>بيغاسوس دي ماري</li>
-                <li class="perfume-item"><span class="item-dot"></span>بوس بوتلد</li>
-                <li class="perfume-item"><span class="item-dot"></span>سكيب</li>
-                <li class="perfume-item"><span class="item-dot"></span>باشا كارتير</li>
-                <li class="perfume-item"><span class="item-dot"></span>غوتشي باي غوتشي</li>
-                <li class="perfume-item"><span class="item-dot"></span>أربيان تونكا</li>
-                <li class="perfume-item"><span class="item-dot"></span>ذاغيم</li>
-                <li class="perfume-item"><span class="item-dot"></span>سكسي-Sexsy 212</li>
-                <li class="perfume-item"><span class="item-dot"></span>هوغو بوس</li>
-                <li class="perfume-item"><span class="item-dot"></span>آرماني كود</li>
-                <li class="perfume-item"><span class="item-dot"></span>فلور ناركوتيك</li>
-                <li class="perfume-item"><span class="item-dot"></span>شيخ شيوخ</li>
-                <li class="perfume-item"><span class="item-dot"></span>لاكوست تشالنج</li>
-                <li class="perfume-item"><span class="item-dot"></span>بولو بلو</li>
-                <li class="perfume-item"><span class="item-dot"></span>عود الابياد</li>
-                <li class="perfume-item"><span class="item-dot"></span>ليتون دي مارلي</li>
-                <li class="perfume-item"><span class="item-dot"></span>بانشولي انتنتس</li>
-                <li class="perfume-item"><span class="item-dot"></span>بورن ان روما</li>
-            </ul>
-        </div>
-
-        <!-- رجالي خزانة 2 -->
-        <div class="category-card" data-type="men">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-mars"></i></div>
-                    <div class="title-text">
-                        <h3>خزانة رقم (2)</h3>
-                        <span class="subtitle">رجالي</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>ديور هوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>بولو بلاك</li>
-                <li class="perfume-item"><span class="item-dot"></span>ليزي دي هرمز</li>
-                <li class="perfume-item"><span class="item-dot"></span>غوتشي عود</li>
-                <li class="perfume-item"><span class="item-dot"></span>دنهل فريش</li>
-                <li class="perfume-item"><span class="item-dot"></span>أفتر نون سويم</li>
-                <li class="perfume-item"><span class="item-dot"></span>Open</li>
-                <li class="perfume-item"><span class="item-dot"></span>vip 212 رجالي</li>
-                <li class="perfume-item"><span class="item-dot"></span>جوب</li>
-                <li class="perfume-item"><span class="item-dot"></span>بور اوم D.G</li>
-                <li class="perfume-item"><span class="item-dot"></span>بلاك بوشن</li>
-                <li class="perfume-item"><span class="item-dot"></span>سبايس مان جفنشي</li>
-                <li class="perfume-item"><span class="item-dot"></span>باريس هيلتون</li>
-                <li class="perfume-item"><span class="item-dot"></span>بلاك Xs</li>
-                <li class="perfume-item"><span class="item-dot"></span>باكوربان</li>
-                <li class="perfume-item"><span class="item-dot"></span>بولغاري مان</li>
-                <li class="perfume-item"><span class="item-dot"></span>رويال بلو</li>
-                <li class="perfume-item"><span class="item-dot"></span>فهرنهايت</li>
-                <li class="perfume-item"><span class="item-dot"></span>سكلبتشر</li>
-                <li class="perfume-item"><span class="item-dot"></span>بلو جينز</li>
-                <li class="perfume-item"><span class="item-dot"></span>الثائر بارفان</li>
-                <li class="perfume-item"><span class="item-dot"></span>مور ذان ورد</li>
-                <li class="perfume-item"><span class="item-dot"></span>الورهوم سبورت</li>
-                <li class="perfume-item"><span class="item-dot"></span>ناكسوس</li>
-                <li class="perfume-item"><span class="item-dot"></span>ازارو</li>
-                <li class="perfume-item"><span class="item-dot"></span>بربرل ليبل</li>
-                <li class="perfume-item"><span class="item-dot"></span>تشامبوا</li>
-                <li class="perfume-item"><span class="item-dot"></span>باريس x.s.l</li>
-                <li class="perfume-item"><span class="item-dot"></span>بيور نايت xs</li>
-                <li class="perfume-item"><span class="item-dot"></span>كينغ k</li>
-                <li class="perfume-item"><span class="item-dot"></span>جاكوبو</li>
-                <li class="perfume-item"><span class="item-dot"></span>فندي</li>
-                <li class="perfume-item"><span class="item-dot"></span>توباكو فانيلا</li>
-                <li class="perfume-item"><span class="item-dot"></span>شانيل بلانيوم</li>
-            </ul>
-        </div>
-
-        <!-- رجالي خزانة 3 -->
-        <div class="category-card" data-type="men">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-mars"></i></div>
-                    <div class="title-text">
-                        <h3>خزانة رقم (3)</h3>
-                        <span class="subtitle">رجالي</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>كود بورفوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>ذاون</li>
-                <li class="perfume-item"><span class="item-dot"></span>روشاذ مان</li>
-                <li class="perfume-item"><span class="item-dot"></span>ديزل باد</li>
-                <li class="perfume-item"><span class="item-dot"></span>جفنشيpi</li>
-                <li class="perfume-item"><span class="item-dot"></span>دنهل لندن</li>
-                <li class="perfume-item"><span class="item-dot"></span>أمريكان</li>
-                <li class="perfume-item"><span class="item-dot"></span>بولغاري تايغر</li>
-                <li class="perfume-item"><span class="item-dot"></span>روجا أيليسوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>غاردن برادس</li>
-                <li class="perfume-item"><span class="item-dot"></span>الكسندرية</li>
-                <li class="perfume-item"><span class="item-dot"></span>توكسيدو</li>
-                <li class="perfume-item"><span class="item-dot"></span>بربري هيرو</li>
-                <li class="perfume-item"><span class="item-dot"></span>انفكتوس فيكتوري</li>
-                <li class="perfume-item"><span class="item-dot"></span>اراميس900</li>
-                <li class="perfume-item"><span class="item-dot"></span>ديكلاريشن</li>
-                <li class="perfume-item"><span class="item-dot"></span>بلو فور مان</li>
-                <li class="perfume-item"><span class="item-dot"></span>صندل غيرلان</li>
-                <li class="perfume-item"><span class="item-dot"></span>مستر بربري</li>
-                <li class="perfume-item"><span class="item-dot"></span>برافا</li>
-                <li class="perfume-item"><span class="item-dot"></span>فالينتينو دارج</li>
-                <li class="perfume-item"><span class="item-dot"></span>نوار اكستريم</li>
-                <li class="perfume-item"><span class="item-dot"></span>آزارو ليجينت</li>
-                <li class="perfume-item"><span class="item-dot"></span>واي اوف سان لورن</li>
-                <li class="perfume-item"><span class="item-dot"></span>آكوا دي جيو</li>
-                <li class="perfume-item"><span class="item-dot"></span>أدفنيشر</li>
-                <li class="perfume-item"><span class="item-dot"></span>كوروس</li>
-                <li class="perfume-item"><span class="item-dot"></span>آلفوريا</li>
-                <li class="perfume-item"><span class="item-dot"></span>جان فرانكو</li>
-                <li class="perfume-item"><span class="item-dot"></span>كينزو</li>
-                <li class="perfume-item"><span class="item-dot"></span>بوس نايت</li>
-                <li class="perfume-item"><span class="item-dot"></span>الهوم ايفان</li>
-                <li class="perfume-item"><span class="item-dot"></span>باد بوي</li>
-                <li class="perfume-item"><span class="item-dot"></span>لوكي مان</li>
-                <li class="perfume-item"><span class="item-dot"></span>ذا سنت</li>
-                <li class="perfume-item"><span class="item-dot"></span>بروت</li>
-                <li class="perfume-item"><span class="item-dot"></span>سوفاج الكسير</li>
-                <li class="perfume-item"><span class="item-dot"></span>رومبا</li>
-                <li class="perfume-item"><span class="item-dot"></span>هوغو</li>
-                <li class="perfume-item"><span class="item-dot"></span>آزارو كروم</li>
-                <li class="perfume-item"><span class="item-dot"></span>امبرليزر tm</li>
-            </ul>
-        </div>
-
-        <!-- رجالي خزانة 4 -->
-        <div class="category-card" data-type="men">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-mars"></i></div>
-                    <div class="title-text">
-                        <h3>خزانة رقم (4)</h3>
-                        <span class="subtitle">رجالي</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>سلفر شادو</li>
-                <li class="perfume-item"><span class="item-dot"></span>سيكار</li>
-                <li class="perfume-item"><span class="item-dot"></span>لاكوست ريد</li>
-                <li class="perfume-item"><span class="item-dot"></span>ليس مياكي</li>
-                <li class="perfume-item"><span class="item-dot"></span>مليون لكي</li>
-                <li class="perfume-item"><span class="item-dot"></span>ماليزيا</li>
-                <li class="perfume-item"><span class="item-dot"></span>سي انتر</li>
-                <li class="perfume-item"><span class="item-dot"></span>ايماجنيشن</li>
-                <li class="perfume-item"><span class="item-dot"></span>ck1</li>
-                <li class="perfume-item"><span class="item-dot"></span>ليكزس</li>
-                <li class="perfume-item"><span class="item-dot"></span>نايت فلايت</li>
-                <li class="perfume-item"><span class="item-dot"></span>دبوكيه</li>
-                <li class="perfume-item"><span class="item-dot"></span>دراق</li>
-                <li class="perfume-item"><span class="item-dot"></span>تفاح</li>
-                <li class="perfume-item"><span class="item-dot"></span>هيدن شولدرز</li>
-                <li class="perfume-item"><span class="item-dot"></span>جوفان مسك</li>
-                <li class="perfume-item"><span class="item-dot"></span>دوف</li>
-                <li class="perfume-item"><span class="item-dot"></span>هامول</li>
-                <li class="perfume-item"><span class="item-dot"></span>كارون</li>
-                <li class="perfume-item"><span class="item-dot"></span>ويك آند</li>
-                <li class="perfume-item"><span class="item-dot"></span>زنبق</li>
-                <li class="perfume-item"><span class="item-dot"></span>زيزفون</li>
-                <li class="perfume-item"><span class="item-dot"></span>توليب</li>
-                <li class="perfume-item"><span class="item-dot"></span>برنس</li>
-                <li class="perfume-item"><span class="item-dot"></span>بنفسج</li>
-                <li class="perfume-item"><span class="item-dot"></span>شوكلا</li>
-                <li class="perfume-item"><span class="item-dot"></span>لافندر</li>
-                <li class="perfume-item"><span class="item-dot"></span>ليفيا كريم</li>
-                <li class="perfume-item"><span class="item-dot"></span>جونسون</li>
-                <li class="perfume-item"><span class="item-dot"></span>لوكس</li>
-                <li class="perfume-item"><span class="item-dot"></span>ليلك</li>
-                <li class="perfume-item"><span class="item-dot"></span>بونسوار</li>
-                <li class="perfume-item"><span class="item-dot"></span>فا</li>
-                <li class="perfume-item"><span class="item-dot"></span>فل</li>
-                <li class="perfume-item"><span class="item-dot"></span>ياسمين</li>
-                <li class="perfume-item"><span class="item-dot"></span>Man 212</li>
-                <li class="perfume-item"><span class="item-dot"></span>لاهوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>بينو برافا</li>
-                <li class="perfume-item"><span class="item-dot"></span>كاريرا</li>
-                <li class="perfume-item"><span class="item-dot"></span>جفنشي بور آوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>برادا لوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>شو بارد عود</li>
-                <li class="perfume-item"><span class="item-dot"></span>وان مان هوغو بوس</li>
-                <li class="perfume-item"><span class="item-dot"></span>توباكو كولر</li>
-                <li class="perfume-item"><span class="item-dot"></span>لاهوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>كول وتر</li>
-                <li class="perfume-item"><span class="item-dot"></span>لموستي</li>
-                <li class="perfume-item"><span class="item-dot"></span>فلفت عود</li>
-                <li class="perfume-item"><span class="item-dot"></span>جوب جانب</li>
-            </ul>
-        </div>
-
-        <!-- نسائي خزانة 5 -->
-        <div class="category-card" data-type="women">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-venus"></i></div>
-                    <div class="title-text">
-                        <h3>خزانة رقم (5)</h3>
-                        <span class="subtitle">نسائي</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>اونلي ذاون</li>
-                <li class="perfume-item"><span class="item-dot"></span>آيكو</li>
-                <li class="perfume-item"><span class="item-dot"></span>مس لافيرن</li>
-                <li class="perfume-item"><span class="item-dot"></span>جفنشي بلي</li>
-                <li class="perfume-item"><span class="item-dot"></span>إيلين مونفلير</li>
-                <li class="perfume-item"><span class="item-dot"></span>شانيل ١٩</li>
-                <li class="perfume-item"><span class="item-dot"></span>بينك شيفون</li>
-                <li class="perfume-item"><span class="item-dot"></span>فيري</li>
-                <li class="perfume-item"><span class="item-dot"></span>كلويه لانا ستور</li>
-                <li class="perfume-item"><span class="item-dot"></span>برايت كرستال</li>
-                <li class="perfume-item"><span class="item-dot"></span>مدام روشن</li>
-                <li class="perfume-item"><span class="item-dot"></span>لايت بلو</li>
-                <li class="perfume-item"><span class="item-dot"></span>كوين آزارو</li>
-                <li class="perfume-item"><span class="item-dot"></span>آزارو وانتد غيرل</li>
-                <li class="perfume-item"><span class="item-dot"></span>غوتشي غيلي</li>
-                <li class="perfume-item"><span class="item-dot"></span>سيداكتيف</li>
-                <li class="perfume-item"><span class="item-dot"></span>انسولانس غيرلان</li>
-                <li class="perfume-item"><span class="item-dot"></span>فيرت ملاكيت</li>
-                <li class="perfume-item"><span class="item-dot"></span>ريتشي ريتشي</li>
-                <li class="perfume-item"><span class="item-dot"></span>لانوي تريزور</li>
-                <li class="perfume-item"><span class="item-dot"></span>ذا سنت</li>
-                <li class="perfume-item"><span class="item-dot"></span>لوليتا لامبيكا</li>
-                <li class="perfume-item"><span class="item-dot"></span>بلاك xs</li>
-                <li class="perfume-item"><span class="item-dot"></span>شانيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>بوازون غيرل</li>
-                <li class="perfume-item"><span class="item-dot"></span>جي</li>
-            </ul>
-        </div>
-
-        <!-- نسائي خزانة 6 -->
-        <div class="category-card" data-type="women">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-venus"></i></div>
-                    <div class="title-text">
-                        <h3>خزانة رقم (6)</h3>
-                        <span class="subtitle">نسائي</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>ماري مي</li>
-                <li class="perfume-item"><span class="item-dot"></span>نينا ريتشي</li>
-                <li class="perfume-item"><span class="item-dot"></span>كابوتين</li>
-                <li class="perfume-item"><span class="item-dot"></span>سكيب</li>
-                <li class="perfume-item"><span class="item-dot"></span>ماي واي</li>
-                <li class="perfume-item"><span class="item-dot"></span>ماي بربري</li>
-                <li class="perfume-item"><span class="item-dot"></span>كول وتر</li>
-                <li class="perfume-item"><span class="item-dot"></span>كينزو فلور</li>
-                <li class="perfume-item"><span class="item-dot"></span>لانكوم ايدول</li>
-                <li class="perfume-item"><span class="item-dot"></span>هوغو وومن</li>
-                <li class="perfume-item"><span class="item-dot"></span>كيالي فانيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>غوتشي فلورا</li>
-                <li class="perfume-item"><span class="item-dot"></span>هاواي</li>
-                <li class="perfume-item"><span class="item-dot"></span>بينك شوغر</li>
-                <li class="perfume-item"><span class="item-dot"></span>بربريس بوازون</li>
-                <li class="perfume-item"><span class="item-dot"></span>تروبيكال</li>
-                <li class="perfume-item"><span class="item-dot"></span>ديور أديكت</li>
-                <li class="perfume-item"><span class="item-dot"></span>باشنsi</li>
-                <li class="perfume-item"><span class="item-dot"></span>آنجل</li>
-                <li class="perfume-item"><span class="item-dot"></span>باريس هيلتون</li>
-                <li class="perfume-item"><span class="item-dot"></span>أولوميبا</li>
-                <li class="perfume-item"><span class="item-dot"></span>غوتشي راشن</li>
-                <li class="perfume-item"><span class="item-dot"></span>آيلي صعب</li>
-                <li class="perfume-item"><span class="item-dot"></span>ايفوريا</li>
-                <li class="perfume-item"><span class="item-dot"></span>ليدي مليون</li>
-                <li class="perfume-item"><span class="item-dot"></span>رومانس</li>
-                <li class="perfume-item"><span class="item-dot"></span>ينود</li>
-                <li class="perfume-item"><span class="item-dot"></span>آنيس آنيس</li>
-                <li class="perfume-item"><span class="item-dot"></span>باشن</li>
-                <li class="perfume-item"><span class="item-dot"></span>ستيلا داسيديك</li>
-                <li class="perfume-item"><span class="item-dot"></span>بربريس</li>
-                <li class="perfume-item"><span class="item-dot"></span>كوكانت باشن</li>
-                <li class="perfume-item"><span class="item-dot"></span>جوي</li>
-                <li class="perfume-item"><span class="item-dot"></span>سكادة شبلي</li>
-                <li class="perfume-item"><span class="item-dot"></span>بلاك اوبيوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>نينا شيروتي ١٨٨١</li>
-                <li class="perfume-item"><span class="item-dot"></span>غوتشي باي غوتشي</li>
-                <li class="perfume-item"><span class="item-dot"></span>مامنفيستو y.s.l</li>
-                <li class="perfume-item"><span class="item-dot"></span>توسكا</li>
-                <li class="perfume-item"><span class="item-dot"></span>ميراكل</li>
-                <li class="perfume-item"><span class="item-dot"></span>بي ديلز</li>
-                <li class="perfume-item"><span class="item-dot"></span>أنفي مي</li>
-                <li class="perfume-item"><span class="item-dot"></span>مس ديور</li>
-                <li class="perfume-item"><span class="item-dot"></span>سنشوال</li>
-            </ul>
-        </div>
-
-        <!-- نسائي خزانة 7 -->
-        <div class="category-card" data-type="women">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-venus"></i></div>
-                    <div class="title-text">
-                        <h3>خزانة رقم (7)</h3>
-                        <span class="subtitle">نسائي</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>سكاندل</li>
-                <li class="perfume-item"><span class="item-dot"></span>ليبر</li>
-                <li class="perfume-item"><span class="item-dot"></span>Si</li>
-                <li class="perfume-item"><span class="item-dot"></span>روبيرتو كافالي</li>
-                <li class="perfume-item"><span class="item-dot"></span>ذاون</li>
-                <li class="perfume-item"><span class="item-dot"></span>سكسي كرافيتي</li>
-                <li class="perfume-item"><span class="item-dot"></span>غوتشي بلوم</li>
-                <li class="perfume-item"><span class="item-dot"></span>كريستال نوار</li>
-                <li class="perfume-item"><span class="item-dot"></span>اند ان اونلي</li>
-                <li class="perfume-item"><span class="item-dot"></span>تاتش أوف بينك</li>
-                <li class="perfume-item"><span class="item-dot"></span>شانيل شانص</li>
-                <li class="perfume-item"><span class="item-dot"></span>CH</li>
-                <li class="perfume-item"><span class="item-dot"></span>بيور بوازون</li>
-                <li class="perfume-item"><span class="item-dot"></span>ويك آند</li>
-                <li class="perfume-item"><span class="item-dot"></span>يس آيام</li>
-                <li class="perfume-item"><span class="item-dot"></span>نواكشريل</li>
-                <li class="perfume-item"><span class="item-dot"></span>بليجرز</li>
-                <li class="perfume-item"><span class="item-dot"></span>اترنتي</li>
-                <li class="perfume-item"><span class="item-dot"></span>جوي فل</li>
-                <li class="perfume-item"><span class="item-dot"></span>ريد جينز</li>
-                <li class="perfume-item"><span class="item-dot"></span>جفنشي اورغانزة</li>
-                <li class="perfume-item"><span class="item-dot"></span>نسائيvip</li>
-                <li class="perfume-item"><span class="item-dot"></span>روبرنو كافالي</li>
-                <li class="perfume-item"><span class="item-dot"></span>لوست شيري Lost shery</li>
-                <li class="perfume-item"><span class="item-dot"></span>ميد نايت روز</li>
-                <li class="perfume-item"><span class="item-dot"></span>آيل نسائي</li>
-                <li class="perfume-item"><span class="item-dot"></span>بوازون ديور</li>
-            </ul>
-        </div>
-
-        <!-- كونتوار نسائي -->
-        <div class="category-card" data-type="counter-women">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-store"></i></div>
-                    <div class="title-text">
-                        <h3>كونتوار نسائي</h3>
-                        <span class="subtitle">الأصناف المعروضة</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>غود غيرل</li>
-                <li class="perfume-item"><span class="item-dot"></span>لوفا إذ هفنلي</li>
-                <li class="perfume-item"><span class="item-dot"></span>فنتازيا</li>
-                <li class="perfume-item"><span class="item-dot"></span>سكسي ٢١٢</li>
-                <li class="perfume-item"><span class="item-dot"></span>شانص اوتند</li>
-                <li class="perfume-item"><span class="item-dot"></span>بربري بودي</li>
-                <li class="perfume-item"><span class="item-dot"></span>روج</li>
-                <li class="perfume-item"><span class="item-dot"></span>بربري هير</li>
-                <li class="perfume-item"><span class="item-dot"></span>لافي بيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>جادور</li>
-                <li class="perfume-item"><span class="item-dot"></span>بومب شيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>تاج سكادا</li>
-                <li class="perfume-item"><span class="item-dot"></span>لابومبا هيريرا</li>
-                <li class="perfume-item"><span class="item-dot"></span>لابيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>كوكو شانيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>مدام غوتيه</li>
-                <li class="perfume-item"><span class="item-dot"></span>مون سباركل</li>
-                <li class="perfume-item"><span class="item-dot"></span>بيكوز</li>
-                <li class="perfume-item"><span class="item-dot"></span>اوشن لونج سكادا</li>
-                <li class="perfume-item"><span class="item-dot"></span>بورن ان روما</li>
-                <li class="perfume-item"><span class="item-dot"></span>باردوكس</li>
-                <li class="perfume-item"><span class="item-dot"></span>كيالي مرشميلو</li>
-                <li class="perfume-item"><span class="item-dot"></span>مون باريس</li>
-                <li class="perfume-item"><span class="item-dot"></span>سلفر داست</li>
-            </ul>
-        </div>
-
-        <!-- كونتوار رجالي -->
-        <div class="category-card" data-type="counter-men">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-store"></i></div>
-                    <div class="title-text">
-                        <h3>كونتوار رجالي</h3>
-                        <span class="subtitle">الأصناف المعروضة</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>مونت بلانك ليجنت</li>
-                <li class="perfume-item"><span class="item-dot"></span>باسفك تشيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>آزارو وانتد</li>
-                <li class="perfume-item"><span class="item-dot"></span>بريمير همر</li>
-                <li class="perfume-item"><span class="item-dot"></span>سترونغر وذ يو</li>
-                <li class="perfume-item"><span class="item-dot"></span>سترونغر انتسلي</li>
-                <li class="perfume-item"><span class="item-dot"></span>بلو شانيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>لومال الكسير</li>
-                <li class="perfume-item"><span class="item-dot"></span>دنهل ديزاير</li>
-                <li class="perfume-item"><span class="item-dot"></span>لاكوست شانيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>فانيل باودر</li>
-                <li class="perfume-item"><span class="item-dot"></span>ماسك ان 5-Musk n 5</li>
-                <li class="perfume-item"><span class="item-dot"></span>انفكتوس</li>
-                <li class="perfume-item"><span class="item-dot"></span>جيمس بوند</li>
-                <li class="perfume-item"><span class="item-dot"></span>التراميل</li>
-                <li class="perfume-item"><span class="item-dot"></span>كريد افنتوس</li>
-                <li class="perfume-item"><span class="item-dot"></span>سكاندل</li>
-                <li class="perfume-item"><span class="item-dot"></span>آيروس</li>
-                <li class="perfume-item"><span class="item-dot"></span>سوفاج</li>
-                <li class="perfume-item"><span class="item-dot"></span>لاكوست وايت</li>
-                <li class="perfume-item"><span class="item-dot"></span>فوياج</li>
-                <li class="perfume-item"><span class="item-dot"></span>في اي بي بلاك-Vip Black</li>
-                <li class="perfume-item"><span class="item-dot"></span>وان مليون</li>
-                <li class="perfume-item"><span class="item-dot"></span>سلفر سنت</li>
-                <li class="perfume-item"><span class="item-dot"></span>سلفر مونتد</li>
-                <li class="perfume-item"><span class="item-dot"></span>برابدل</li>
-                <li class="perfume-item"><span class="item-dot"></span>اسنتريك ماليكولاس</li>
-                <li class="perfume-item"><span class="item-dot"></span>نيشاني</li>
-            </ul>
-        </div>
-
-        <!-- حويجلات دهبية -->
-        <div class="category-card" data-type="oriental">
-            <div class="category-title" onclick="toggleCard(this)">
-                <div class="title-right">
-                    <div class="title-icon"><i class="fas fa-star"></i></div>
-                    <div class="title-text">
-                        <h3>حويجلات دهبية</h3>
-                        <span class="subtitle">عطور شرقية فاخرة</span>
-                    </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px;">
-                    <span class="item-count"></span>
-                    <i class="fas fa-chevron-down toggle-icon"></i>
-                </div>
-            </div>
-            <ul class="perfume-list">
-                <li class="perfume-item"><span class="item-dot"></span>وصال</li>
-                <li class="perfume-item"><span class="item-dot"></span>حريم السلطان</li>
-                <li class="perfume-item"><span class="item-dot"></span>فلور مسك</li>
-                <li class="perfume-item"><span class="item-dot"></span>ريد توباكو</li>
-                <li class="perfume-item"><span class="item-dot"></span>ميد نايت روز</li>
-                <li class="perfume-item"><span class="item-dot"></span>قصة لالونا</li>
-                <li class="perfume-item"><span class="item-dot"></span>عنبر عود</li>
-                <li class="perfume-item"><span class="item-dot"></span>هيدسون قصة</li>
-                <li class="perfume-item"><span class="item-dot"></span>خمرة قهوة</li>
-                <li class="perfume-item"><span class="item-dot"></span>خمرة</li>
-                <li class="perfume-item"><span class="item-dot"></span>فويس أوف ذاسينك</li>
-                <li class="perfume-item"><span class="item-dot"></span>عود سلطان</li>
-                <li class="perfume-item"><span class="item-dot"></span>شمس الامارات</li>
-                <li class="perfume-item"><span class="item-dot"></span>عنبر رومانس</li>
-                <li class="perfume-item"><span class="item-dot"></span>عود ابيض</li>
-                <li class="perfume-item"><span class="item-dot"></span>لوست شيري</li>
-                <li class="perfume-item"><span class="item-dot"></span>لوست شيري بلاك أوركيد</li>
-                <li class="perfume-item"><span class="item-dot"></span>كينغ لينا</li>
-                <li class="perfume-item"><span class="item-dot"></span>شهرة</li>
-                <li class="perfume-item"><span class="item-dot"></span>٤٠ عقدة</li>
-                <li class="perfume-item"><span class="item-dot"></span>ديلينا pd m</li>
-                <li class="perfume-item"><span class="item-dot"></span>ميغمار اورتو باريس</li>
-                <li class="perfume-item"><span class="item-dot"></span>لابيدوس</li>
-                <li class="perfume-item"><span class="item-dot"></span>ماركوجا</li>
-                <li class="perfume-item"><span class="item-dot"></span>ستلرتايم ايمرالد</li>
-                <li class="perfume-item"><span class="item-dot"></span>فاير بلاس</li>
-                <li class="perfume-item"><span class="item-dot"></span>مسك ابيض</li>
-                <li class="perfume-item"><span class="item-dot"></span>لورد جورج</li>
-                <li class="perfume-item"><span class="item-dot"></span>أصفهان</li>
-                <li class="perfume-item"><span class="item-dot"></span>توسكان</li>
-                <li class="perfume-item"><span class="item-dot"></span>روز فانيل</li>
-                <li class="perfume-item"><span class="item-dot"></span>مسك اسود</li>
-                <li class="perfume-item"><span class="item-dot"></span>مضاوي</li>
-                <li class="perfume-item"><span class="item-dot"></span>امبريال</li>
-                <li class="perfume-item"><span class="item-dot"></span>مسك روز</li>
-                <li class="perfume-item"><span class="item-dot"></span>عود فرغرتنس</li>
-                <li class="perfume-item"><span class="item-dot"></span>عود كومبودي</li>
-                <li class="perfume-item"><span class="item-dot"></span>كلمات اجمل</li>
-                <li class="perfume-item"><span class="item-dot"></span>سلك مسك لاكشري</li>
-                <li class="perfume-item"><span class="item-dot"></span>بخور العرائس</li>
-                <li class="perfume-item"><span class="item-dot"></span>تيروي</li>
-                <li class="perfume-item"><span class="item-dot"></span>عنبر نومال</li>
-                <li class="perfume-item"><span class="item-dot"></span>اربابورا سوسبيرو</li>
-                <li class="perfume-item"><span class="item-dot"></span>بكرات روج</li>
-                <li class="perfume-item"><span class="item-dot"></span>عود بوكيه</li>
-                <li class="perfume-item"><span class="item-dot"></span>عود كاشمر</li>
-                <li class="perfume-item"><span class="item-dot"></span>ماجيك</li>
-                <li class="perfume-item"><span class="item-dot"></span>عود هندي</li>
-            </ul>
-        </div>
-
-        <div id="noResults">
-            <div class="no-results-icon">
-                <i class="fas fa-search"></i>
-            </div>
-            <h3>لم يتم العثور على نتائج</h3>
-            <p>يرجى التأكد من إملاء اسم العطر أو جرّب كلمة مختلفة</p>
-        </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 1</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">23</span><span class="item-dot"></span>ديور هوم - رجالي</li>
+        <li class="perfume-item"><span class="item-number">24</span><span class="item-dot"></span>بولو بلاك - رجالي</li>
+        <li class="perfume-item"><span class="item-number">25</span><span class="item-dot"></span>تيري دي هرمز - رجالي</li>
+        <li class="perfume-item"><span class="item-number">26</span><span class="item-dot"></span>غوتشي عود</li>
+        <li class="perfume-item"><span class="item-number">27</span><span class="item-dot"></span>دنهل فريش - رجالي</li>
+        <li class="perfume-item"><span class="item-number">28</span><span class="item-dot"></span>افترنون سويم Lv</li>
+        <li class="perfume-item"><span class="item-number">29</span><span class="item-dot"></span>أوبن - رجالي</li>
+        <li class="perfume-item"><span class="item-number">30</span><span class="item-dot"></span>رجالي vip212</li>
+        <li class="perfume-item"><span class="item-number">31</span><span class="item-dot"></span>جوب - رجالي</li>
+      </ul>
     </div>
-
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <div class="footer">
-        <p>جميع الحقوق محفوظة © 2025 | أصناف الاسانس بالسكيلاند</p>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 2</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">32</span><span class="item-dot"></span>دولشي غانا بور هوم</li>
+        <li class="perfume-item"><span class="item-number">33</span><span class="item-dot"></span>جيو بورفوم - رجالي</li>
+        <li class="perfume-item"><span class="item-number">34</span><span class="item-dot"></span>بلاك بوشن - رجالي</li>
+        <li class="perfume-item"><span class="item-number">35</span><span class="item-dot"></span>سبايس بومب V&R</li>
+        <li class="perfume-item"><span class="item-number">36</span><span class="item-dot"></span>جنتل مان Givenchy</li>
+        <li class="perfume-item"><span class="item-number">37</span><span class="item-dot"></span>باريس هيلتوم - رجالي</li>
+        <li class="perfume-item"><span class="item-number">38</span><span class="item-dot"></span>بلاك xs - رجالي</li>
+        <li class="perfume-item"><span class="item-number">39</span><span class="item-dot"></span>باكورا بان - رجالي</li>
+        <li class="perfume-item"><span class="item-number">40</span><span class="item-dot"></span>بولغاري مان - رجالي</li>
+        <li class="perfume-item"><span class="item-number">41</span><span class="item-dot"></span>رويال بلو / بولغاري بلو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">42</span><span class="item-dot"></span>فهرنهايت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">43</span><span class="item-dot"></span>سنو - سكلبتشر.ر</li>
+      </ul>
     </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 3</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">44</span><span class="item-dot"></span>بلو جينز - رجالي</li>
+        <li class="perfume-item"><span class="item-number">45</span><span class="item-dot"></span>الثائر Pdm</li>
+        <li class="perfume-item"><span class="item-number">46</span><span class="item-dot"></span>مورذان ووردز Xerjoof</li>
+        <li class="perfume-item"><span class="item-number">47</span><span class="item-dot"></span>الورهوم سبورت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">48</span><span class="item-dot"></span>ناكسوس Xerjoof</li>
+        <li class="perfume-item"><span class="item-number">49</span><span class="item-dot"></span>بربر ليبل - رجالي</li>
+        <li class="perfume-item"><span class="item-number">50</span><span class="item-dot"></span>تشامبيون - رجالي</li>
+        <li class="perfume-item"><span class="item-number">51</span><span class="item-dot"></span>بيور نايت xs - رجالي</li>
+        <li class="perfume-item"><span class="item-number">52</span><span class="item-dot"></span>كينغ k - رجالي</li>
+        <li class="perfume-item"><span class="item-number">53</span><span class="item-dot"></span>جاكومو كازا نوفا</li>
+        <li class="perfume-item"><span class="item-number">54</span><span class="item-dot"></span>فندي - رجالي</li>
+        <li class="perfume-item"><span class="item-number">55</span><span class="item-dot"></span>توباكو فانيل Tm</li>
+        <li class="perfume-item"><span class="item-number">56</span><span class="item-dot"></span>شانيل ايجوست/بلاتينيوم - رجالي</li>
+        <li class="perfume-item"><span class="item-number">57</span><span class="item-dot"></span>ماي سيلف - رجالي</li>
+        <li class="perfume-item"><span class="item-number">58</span><span class="item-dot"></span>آزارو - رجالي</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-    <script>
-        // ============================
-        // دالة توحيد الحروف العربية المتشابهة (الحل الرئيسي)
-        // ============================
-        function normalizeArabic(text) {
-            text = text.toLowerCase();
+<!-- ============ خزانة 3 ============ -->
+<div class="category-card" data-type="men">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-mars"></i></div>
+      <div class="title-text"><h3>خزانة رقم (3)</h3><span class="subtitle">رجالي</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 1</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">59</span><span class="item-dot"></span>كود بورفو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">60</span><span class="item-dot"></span>اونلي ذا وان D&g</li>
+        <li class="perfume-item"><span class="item-number">61</span><span class="item-dot"></span>روشاز مان - رجالي</li>
+        <li class="perfume-item"><span class="item-number">62</span><span class="item-dot"></span>ديزل باد - رجالي</li>
+        <li class="perfume-item"><span class="item-number">63</span><span class="item-dot"></span>جفنش Pi</li>
+        <li class="perfume-item"><span class="item-number">64</span><span class="item-dot"></span>دنهل لندن - رجالي</li>
+        <li class="perfume-item"><span class="item-number">65</span><span class="item-dot"></span>امريكان سبيريت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">66</span><span class="item-dot"></span>بولغاري تايغر - رجالي</li>
+        <li class="perfume-item"><span class="item-number">67</span><span class="item-dot"></span>روجا اليليسيوم</li>
+        <li class="perfume-item"><span class="item-number">68</span><span class="item-dot"></span>غاردن باراداس</li>
+        <li class="perfume-item"><span class="item-number">69</span><span class="item-dot"></span>توماس كوسمالا</li>
+        <li class="perfume-item"><span class="item-number">70</span><span class="item-dot"></span>الكسندريا Xerjoof 2</li>
+        <li class="perfume-item"><span class="item-number">71</span><span class="item-dot"></span>اكسينتو Xerjoof</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 2</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">72</span><span class="item-dot"></span>توكسيدو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">73</span><span class="item-dot"></span>بربري هيرو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">74</span><span class="item-dot"></span>انفكتوس فيكتوري - رجالي</li>
+        <li class="perfume-item"><span class="item-number">75</span><span class="item-dot"></span>اراميس - 900 رجالي</li>
+        <li class="perfume-item"><span class="item-number">76</span><span class="item-dot"></span>ديكلاريشن</li>
+        <li class="perfume-item"><span class="item-number">77</span><span class="item-dot"></span>بلو فور مان Rasasi</li>
+        <li class="perfume-item"><span class="item-number">78</span><span class="item-dot"></span>فانتوم - رجالي</li>
+        <li class="perfume-item"><span class="item-number">79</span><span class="item-dot"></span>لي ابسولو اورينت صاندل غيرلان</li>
+        <li class="perfume-item"><span class="item-number">80</span><span class="item-dot"></span>ازارو كروم - رجالي</li>
+        <li class="perfume-item"><span class="item-number">81</span><span class="item-dot"></span>امبري لذر Tm</li>
+        <li class="perfume-item"><span class="item-number">82</span><span class="item-dot"></span>ميستر بربري - رجالي</li>
+        <li class="perfume-item"><span class="item-number">83</span><span class="item-dot"></span>اكوا برافا - رجالي</li>
+        <li class="perfume-item"><span class="item-number">84</span><span class="item-dot"></span>فلانتينوv / دارج - رجالي</li>
+        <li class="perfume-item"><span class="item-number">85</span><span class="item-dot"></span>نوار اكستريم Tm</li>
+        <li class="perfume-item"><span class="item-number">86</span><span class="item-dot"></span>ازارو ليجينت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">87</span><span class="item-dot"></span>واي اوف سان لوران y.s.l</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 3</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">88</span><span class="item-dot"></span>اكوا دي جيو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">89</span><span class="item-dot"></span>ادفينشر - رجالي</li>
+        <li class="perfume-item"><span class="item-number">90</span><span class="item-dot"></span>كوروس y.s.l - رجالي</li>
+        <li class="perfume-item"><span class="item-number">91</span><span class="item-dot"></span>ايفوريا Ck</li>
+        <li class="perfume-item"><span class="item-number">92</span><span class="item-dot"></span>جان فرانكوفيري - رجالي</li>
+        <li class="perfume-item"><span class="item-number">93</span><span class="item-dot"></span>كينزو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">94</span><span class="item-dot"></span>بوس نايت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">95</span><span class="item-dot"></span>ال هوم ايفسان لوران</li>
+        <li class="perfume-item"><span class="item-number">96</span><span class="item-dot"></span>باد بوي - رجالي</li>
+        <li class="perfume-item"><span class="item-number">97</span><span class="item-dot"></span>لوكي مان - رجالي</li>
+        <li class="perfume-item"><span class="item-number">98</span><span class="item-dot"></span>ذا سنت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">99</span><span class="item-dot"></span>بروت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">100</span><span class="item-dot"></span>سوفاج الكسير - رجالي</li>
+        <li class="perfume-item"><span class="item-number">101</span><span class="item-dot"></span>رومبا</li>
+        <li class="perfume-item"><span class="item-number">102</span><span class="item-dot"></span>هوغو انرجايس - رجالي</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            // توحيد أشكال الألف: أ إ آ ٱ ٲ ٳ → ا
-            text = text.replace(/[أإآٱٲٳءٵ]/g, 'ا');
+<!-- ============ خزانة 4 ============ -->
+<div class="category-card" data-type="men">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-mars"></i></div>
+      <div class="title-text"><h3>خزانة رقم (4)</h3><span class="subtitle">رجالي</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 1</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">103</span><span class="item-dot"></span>سلفر شادو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">104</span><span class="item-dot"></span>سيكار - رجالي</li>
+        <li class="perfume-item"><span class="item-number">105</span><span class="item-dot"></span>لاكوست ريد - رجالي</li>
+        <li class="perfume-item"><span class="item-number">106</span><span class="item-dot"></span>ليسي مياكي</li>
+        <li class="perfume-item"><span class="item-number">107</span><span class="item-dot"></span>مليون لكي</li>
+        <li class="perfume-item"><span class="item-number">108</span><span class="item-dot"></span>ماليزيا أخضر</li>
+        <li class="perfume-item"><span class="item-number">109</span><span class="item-dot"></span>سي اتش</li>
+        <li class="perfume-item"><span class="item-number">110</span><span class="item-dot"></span>نيشاني اني</li>
+        <li class="perfume-item"><span class="item-number">111</span><span class="item-dot"></span>Ck1 - رجالي</li>
+        <li class="perfume-item"><span class="item-number">112</span><span class="item-dot"></span>ليكزس - رجالي</li>
+        <li class="perfume-item"><span class="item-number">113</span><span class="item-dot"></span>ايماجنيشن Lv</li>
+        <li class="perfume-item"><span class="item-number">114</span><span class="item-dot"></span>نايت فلايت - رجالي</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 2</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">115</span><span class="item-dot"></span>دراق</li>
+        <li class="perfume-item"><span class="item-number">116</span><span class="item-dot"></span>تفاح</li>
+        <li class="perfume-item"><span class="item-number">117</span><span class="item-dot"></span>هيدن شولدرز</li>
+        <li class="perfume-item"><span class="item-number">118</span><span class="item-dot"></span>جوفان مسك Ajmal</li>
+        <li class="perfume-item"><span class="item-number">119</span><span class="item-dot"></span>دوف</li>
+        <li class="perfume-item"><span class="item-number">120</span><span class="item-dot"></span>هامول</li>
+        <li class="perfume-item"><span class="item-number">121</span><span class="item-dot"></span>كارون</li>
+        <li class="perfume-item"><span class="item-number">122</span><span class="item-dot"></span>ويك آند - نسائي</li>
+        <li class="perfume-item"><span class="item-number">123</span><span class="item-dot"></span>زنبق</li>
+        <li class="perfume-item"><span class="item-number">124</span><span class="item-dot"></span>زيرفون</li>
+        <li class="perfume-item"><span class="item-number">125</span><span class="item-dot"></span>توليب</li>
+        <li class="perfume-item"><span class="item-number">126</span><span class="item-dot"></span>برنس - رجالي</li>
+        <li class="perfume-item"><span class="item-number">127</span><span class="item-dot"></span>بنفسج</li>
+        <li class="perfume-item"><span class="item-number">128</span><span class="item-dot"></span>شوكلا</li>
+        <li class="perfume-item"><span class="item-number">129</span><span class="item-dot"></span>لافندر</li>
+        <li class="perfume-item"><span class="item-number">130</span><span class="item-dot"></span>نيفا كريم</li>
+        <li class="perfume-item"><span class="item-number">131</span><span class="item-dot"></span>جونسون</li>
+        <li class="perfume-item"><span class="item-number">132</span><span class="item-dot"></span>لوكس</li>
+        <li class="perfume-item"><span class="item-number">133</span><span class="item-dot"></span>ليلك</li>
+        <li class="perfume-item"><span class="item-number">134</span><span class="item-dot"></span>بونسوار - نسائي</li>
+        <li class="perfume-item"><span class="item-number">135</span><span class="item-dot"></span>فا</li>
+        <li class="perfume-item"><span class="item-number">136</span><span class="item-dot"></span>فل</li>
+        <li class="perfume-item"><span class="item-number">137</span><span class="item-dot"></span>ياسمين</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 3</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">138</span><span class="item-dot"></span>مان 212 - رجالي</li>
+        <li class="perfume-item"><span class="item-number">139</span><span class="item-dot"></span>لاهوم - رجالي</li>
+        <li class="perfume-item"><span class="item-number">140</span><span class="item-dot"></span>جوب - رجالي</li>
+        <li class="perfume-item"><span class="item-number">141</span><span class="item-dot"></span>بينو برافا</li>
+        <li class="perfume-item"><span class="item-number">142</span><span class="item-dot"></span>كاربرا</li>
+        <li class="perfume-item"><span class="item-number">143</span><span class="item-dot"></span>جفنشي بور أوم</li>
+        <li class="perfume-item"><span class="item-number">144</span><span class="item-dot"></span>برادا لوم</li>
+        <li class="perfume-item"><span class="item-number">145</span><span class="item-dot"></span>شو بارد عود ملكي</li>
+        <li class="perfume-item"><span class="item-number">146</span><span class="item-dot"></span>وان مان شو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">147</span><span class="item-dot"></span>هوغو بوس - رجالي</li>
+        <li class="perfume-item"><span class="item-number">148</span><span class="item-dot"></span>توباكو كولر Cd private</li>
+        <li class="perfume-item"><span class="item-number">149</span><span class="item-dot"></span>كول ووتر - رجالي</li>
+        <li class="perfume-item"><span class="item-number">150</span><span class="item-dot"></span>فلفت روز عود</li>
+        <li class="perfume-item"><span class="item-number">151</span><span class="item-dot"></span>لموسيتي</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            // توحيد التاء المربوطة والهاء: ة → ه
-            text = text.replace(/ة/g, 'ه');
+<!-- ============ خزانة 5 ============ -->
+<div class="category-card" data-type="women">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-venus"></i></div>
+      <div class="title-text"><h3>خزانة رقم (5)</h3><span class="subtitle">نسائي</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 1</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">152</span><span class="item-dot"></span>اونلي ذا وان D&g</li>
+        <li class="perfume-item"><span class="item-number">153</span><span class="item-dot"></span>ايكو Davidoof</li>
+        <li class="perfume-item"><span class="item-number">154</span><span class="item-dot"></span>مس لافرن - نسائي</li>
+        <li class="perfume-item"><span class="item-number">155</span><span class="item-dot"></span>جفنشي بلاي</li>
+        <li class="perfume-item"><span class="item-number">156</span><span class="item-dot"></span>آيلين - نسائي</li>
+        <li class="perfume-item"><span class="item-number">157</span><span class="item-dot"></span>شانيل 19 - نسائي</li>
+        <li class="perfume-item"><span class="item-number">158</span><span class="item-dot"></span>بينك شيفون</li>
+        <li class="perfume-item"><span class="item-number">159</span><span class="item-dot"></span>فيري</li>
+        <li class="perfume-item"><span class="item-number">160</span><span class="item-dot"></span>كلوبه لاف ستوري - نسائي</li>
+        <li class="perfume-item"><span class="item-number">161</span><span class="item-dot"></span>ليدي روز Laverne</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 2</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">162</span><span class="item-dot"></span>برايت كريستال - نسائي</li>
+        <li class="perfume-item"><span class="item-number">163</span><span class="item-dot"></span>مدام روشن</li>
+        <li class="perfume-item"><span class="item-number">164</span><span class="item-dot"></span>لايت بلو - نسائي D&g</li>
+        <li class="perfume-item"><span class="item-number">165</span><span class="item-dot"></span>توين Azzaro</li>
+        <li class="perfume-item"><span class="item-number">166</span><span class="item-dot"></span>آزارو وانتد غيرل - نسائي</li>
+        <li class="perfume-item"><span class="item-number">167</span><span class="item-dot"></span>غوتشي غيلي</li>
+        <li class="perfume-item"><span class="item-number">168</span><span class="item-dot"></span>سيداكتيف Guees</li>
+        <li class="perfume-item"><span class="item-number">169</span><span class="item-dot"></span>انسولانس غيرلان - نسائي</li>
+        <li class="perfume-item"><span class="item-number">170</span><span class="item-dot"></span>فيرت ملاكيت</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 3</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">171</span><span class="item-dot"></span>ريتشي ريتشي - نسائي</li>
+        <li class="perfume-item"><span class="item-number">172</span><span class="item-dot"></span>لانوي تريزور - نسائي</li>
+        <li class="perfume-item"><span class="item-number">173</span><span class="item-dot"></span>ذا سنت - نسائي Hugoboss</li>
+        <li class="perfume-item"><span class="item-number">174</span><span class="item-dot"></span>لوليتا لامبيكا Lolita.l</li>
+        <li class="perfume-item"><span class="item-number">175</span><span class="item-dot"></span>بلاك xs - نسائي</li>
+        <li class="perfume-item"><span class="item-number">176</span><span class="item-dot"></span>شانيل جبريل</li>
+        <li class="perfume-item"><span class="item-number">177</span><span class="item-dot"></span>بوازون غيرل Cd</li>
+        <li class="perfume-item"><span class="item-number">178</span><span class="item-dot"></span>جي</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            // توحيد الياء والألف المقصورة: ى → ي
-            text = text.replace(/ى/g, 'ي');
+<!-- ============ خزانة 6 ============ -->
+<div class="category-card" data-type="women">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-venus"></i></div>
+      <div class="title-text"><h3>خزانة رقم (6)</h3><span class="subtitle">نسائي</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 1</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">179</span><span class="item-dot"></span>ماري مي - نسائي</li>
+        <li class="perfume-item"><span class="item-number">180</span><span class="item-dot"></span>نينا ريتشي - نسائي</li>
+        <li class="perfume-item"><span class="item-number">181</span><span class="item-dot"></span>كابوتين - نسائي</li>
+        <li class="perfume-item"><span class="item-number">182</span><span class="item-dot"></span>سكيب - نسائي</li>
+        <li class="perfume-item"><span class="item-number">183</span><span class="item-dot"></span>غوتشي فلور - نسائي</li>
+        <li class="perfume-item"><span class="item-number">184</span><span class="item-dot"></span>ماي بربري - نسائي</li>
+        <li class="perfume-item"><span class="item-number">185</span><span class="item-dot"></span>كول ووتر - نسائي</li>
+        <li class="perfume-item"><span class="item-number">186</span><span class="item-dot"></span>كينزو فلور - نسائي</li>
+        <li class="perfume-item"><span class="item-number">187</span><span class="item-dot"></span>لانكوم ايدول - نسائي</li>
+        <li class="perfume-item"><span class="item-number">188</span><span class="item-dot"></span>هوغو وومن - نسائي</li>
+        <li class="perfume-item"><span class="item-number">189</span><span class="item-dot"></span>كيالي فانيل</li>
+        <li class="perfume-item"><span class="item-number">190</span><span class="item-dot"></span>ماي واي - نسائي</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 2</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">191</span><span class="item-dot"></span>هاواي</li>
+        <li class="perfume-item"><span class="item-number">192</span><span class="item-dot"></span>بينك شوغر - نسائي</li>
+        <li class="perfume-item"><span class="item-number">193</span><span class="item-dot"></span>بربريس - نسائي</li>
+        <li class="perfume-item"><span class="item-number">194</span><span class="item-dot"></span>بوازون / كوبرا - نسائي</li>
+        <li class="perfume-item"><span class="item-number">195</span><span class="item-dot"></span>تروبيكال - نسائي</li>
+        <li class="perfume-item"><span class="item-number">196</span><span class="item-dot"></span>ديور اديكت - نسائي</li>
+        <li class="perfume-item"><span class="item-number">197</span><span class="item-dot"></span>سي باشن - نسائي</li>
+        <li class="perfume-item"><span class="item-number">198</span><span class="item-dot"></span>آنجل</li>
+        <li class="perfume-item"><span class="item-number">199</span><span class="item-dot"></span>باريس هيلتون - نسائي</li>
+        <li class="perfume-item"><span class="item-number">200</span><span class="item-dot"></span>أولومبيا</li>
+        <li class="perfume-item"><span class="item-number">201</span><span class="item-dot"></span>غوتشي راش - نسائي</li>
+        <li class="perfume-item"><span class="item-number">202</span><span class="item-dot"></span>ايلي صعب - نسائي</li>
+        <li class="perfume-item"><span class="item-number">203</span><span class="item-dot"></span>آيفوريا - نسائي</li>
+        <li class="perfume-item"><span class="item-number">204</span><span class="item-dot"></span>ليدي مليون - نسائي</li>
+        <li class="perfume-item"><span class="item-number">205</span><span class="item-dot"></span>رومانس ن Rasasi</li>
+        <li class="perfume-item"><span class="item-number">206</span><span class="item-dot"></span>نيود - نسائي</li>
+        <li class="perfume-item"><span class="item-number">207</span><span class="item-dot"></span>انيس انيس - نسائي</li>
+        <li class="perfume-item"><span class="item-number">208</span><span class="item-dot"></span>كوكونات باشن - نسائي</li>
+        <li class="perfume-item"><span class="item-number">209</span><span class="item-dot"></span>ستيلا / داسيديلا - نسائي</li>
+        <li class="perfume-item"><span class="item-number">210</span><span class="item-dot"></span>بربريس - نسائي</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 3</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">211</span><span class="item-dot"></span>جوي - نسائي</li>
+        <li class="perfume-item"><span class="item-number">212</span><span class="item-dot"></span>سبيشلي سكادة - نسائي</li>
+        <li class="perfume-item"><span class="item-number">213</span><span class="item-dot"></span>بلاك أوبيوم - نسائي</li>
+        <li class="perfume-item"><span class="item-number">214</span><span class="item-dot"></span>نينا شيروتي / 1881</li>
+        <li class="perfume-item"><span class="item-number">215</span><span class="item-dot"></span>غوتشي باي غوتشي</li>
+        <li class="perfume-item"><span class="item-number">216</span><span class="item-dot"></span>مانفيستو</li>
+        <li class="perfume-item"><span class="item-number">217</span><span class="item-dot"></span>توسكا - نسائي</li>
+        <li class="perfume-item"><span class="item-number">218</span><span class="item-dot"></span>ميراكل Lancome</li>
+        <li class="perfume-item"><span class="item-number">219</span><span class="item-dot"></span>بي ديليشز - نسائي</li>
+        <li class="perfume-item"><span class="item-number">220</span><span class="item-dot"></span>انفي مي - نسائي</li>
+        <li class="perfume-item"><span class="item-number">221</span><span class="item-dot"></span>مس ديور - نسائي</li>
+        <li class="perfume-item"><span class="item-number">222</span><span class="item-dot"></span>سنشوال - نسائي</li>
+        <li class="perfume-item"><span class="item-number">223</span><span class="item-dot"></span>نسائي - Ysl مون باريس</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            // توحيد الواو المهموزة: ؤ → و
-            text = text.replace(/ؤ/g, 'و');
+<!-- ============ خزانة 7 ============ -->
+<div class="category-card" data-type="women">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-venus"></i></div>
+      <div class="title-text"><h3>خزانة رقم (7)</h3><span class="subtitle">نسائي</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 1</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">224</span><span class="item-dot"></span>سكاندل - نسائي</li>
+        <li class="perfume-item"><span class="item-number">225</span><span class="item-dot"></span>ليير - نسائي</li>
+        <li class="perfume-item"><span class="item-number">226</span><span class="item-dot"></span>روبيرتو كافالي - نسائي</li>
+        <li class="perfume-item"><span class="item-number">227</span><span class="item-dot"></span>Si - نسائي</li>
+        <li class="perfume-item"><span class="item-number">228</span><span class="item-dot"></span>ذاون</li>
+        <li class="perfume-item"><span class="item-number">229</span><span class="item-dot"></span>سكي كرافيتي</li>
+        <li class="perfume-item"><span class="item-number">230</span><span class="item-dot"></span>غوتشي بامبو - نسائي</li>
+        <li class="perfume-item"><span class="item-number">231</span><span class="item-dot"></span>غوتشي بلوم - نسائي</li>
+        <li class="perfume-item"><span class="item-number">232</span><span class="item-dot"></span>كريستال نوار - نسائي</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 2</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">233</span><span class="item-dot"></span>وان اند اونلي Gissah</li>
+        <li class="perfume-item"><span class="item-number">234</span><span class="item-dot"></span>تاتش أوف بينك</li>
+        <li class="perfume-item"><span class="item-number">235</span><span class="item-dot"></span>شانيل شانص - نسائي</li>
+        <li class="perfume-item"><span class="item-number">236</span><span class="item-dot"></span>CH - نسائي</li>
+        <li class="perfume-item"><span class="item-number">237</span><span class="item-dot"></span>بيور بوازون - نسائي</li>
+        <li class="perfume-item"><span class="item-number">238</span><span class="item-dot"></span>ويك آند - نسائي</li>
+        <li class="perfume-item"><span class="item-number">239</span><span class="item-dot"></span>آيام كشريل - نسائي</li>
+        <li class="perfume-item"><span class="item-number">240</span><span class="item-dot"></span>نواكشريل - نسائي</li>
+        <li class="perfume-item"><span class="item-number">241</span><span class="item-dot"></span>بليجرز - نسائي</li>
+        <li class="perfume-item"><span class="item-number">242</span><span class="item-dot"></span>اترنتي - نسائي</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 3</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">243</span><span class="item-dot"></span>جوي فول - نسائي Cd</li>
+        <li class="perfume-item"><span class="item-number">244</span><span class="item-dot"></span>ريد جينز Versace</li>
+        <li class="perfume-item"><span class="item-number">245</span><span class="item-dot"></span>جفنشي اوريغانزا</li>
+        <li class="perfume-item"><span class="item-number">246</span><span class="item-dot"></span>نسائي Vip</li>
+        <li class="perfume-item"><span class="item-number">247</span><span class="item-dot"></span>روبيرتو كافالي - نسائي</li>
+        <li class="perfume-item"><span class="item-number">248</span><span class="item-dot"></span>lost shery</li>
+        <li class="perfume-item"><span class="item-number">249</span><span class="item-dot"></span>ميد نايت روز</li>
+        <li class="perfume-item"><span class="item-number">250</span><span class="item-dot"></span>ايل</li>
+        <li class="perfume-item"><span class="item-number">251</span><span class="item-dot"></span>هيبنوتيك بوازون - نسائي</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            // توحيد الياء المهموزة: ئ → ي
-            text = text.replace(/ئ/g, 'ي');
+<!-- ============ كونتوار رجالي ============ -->
+<div class="category-card" data-type="counter-men">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-store"></i></div>
+      <div class="title-text"><h3>كونتوار رجالي</h3><span class="subtitle">الأصناف المعروضة</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">300</span><span class="item-dot"></span>كريد افينتوس - رجالي</li>
+        <li class="perfume-item"><span class="item-number">301</span><span class="item-dot"></span>كريد سيلفر مونتن - رجالي</li>
+        <li class="perfume-item"><span class="item-number">302</span><span class="item-dot"></span>استرك ماليكولاس 002</li>
+        <li class="perfume-item"><span class="item-number">303</span><span class="item-dot"></span>سلفر سينت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">304</span><span class="item-dot"></span>بوا امبريال</li>
+        <li class="perfume-item"><span class="item-number">305</span><span class="item-dot"></span>مسك باودر</li>
+        <li class="perfume-item"><span class="item-number">306</span><span class="item-dot"></span>بلو شانيل - رجالي</li>
+        <li class="perfume-item"><span class="item-number">307</span><span class="item-dot"></span>سكاندل - رجالي</li>
+        <li class="perfume-item"><span class="item-number">308</span><span class="item-dot"></span>مونت بلانك ليجينت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">309</span><span class="item-dot"></span>انفكتوس - رجالي</li>
+        <li class="perfume-item"><span class="item-number">310</span><span class="item-dot"></span>لاكوست وايت - رجالي</li>
+        <li class="perfume-item"><span class="item-number">311</span><span class="item-dot"></span>ازارو وانتد - رجالي</li>
+        <li class="perfume-item"><span class="item-number">312</span><span class="item-dot"></span>دنهل ديزاير</li>
+        <li class="perfume-item"><span class="item-number">313</span><span class="item-dot"></span>فانيل باودر - ماتير بومير</li>
+        <li class="perfume-item"><span class="item-number">314</span><span class="item-dot"></span>لاكوست اسينشال - رجالي</li>
+        <li class="perfume-item"><span class="item-number">315</span><span class="item-dot"></span>نيشاني هاشيفات - رجالي</li>
+        <li class="perfume-item"><span class="item-number">316</span><span class="item-dot"></span>بلو شانيل - رجالي</li>
+        <li class="perfume-item"><span class="item-number">317</span><span class="item-dot"></span>باسفك تشيل - رجالي</li>
+        <li class="perfume-item"><span class="item-number">318</span><span class="item-dot"></span>جيمس بوند / 007 - رجالي</li>
+        <li class="perfume-item"><span class="item-number">319</span><span class="item-dot"></span>الترامیل Jpg</li>
+        <li class="perfume-item"><span class="item-number">320</span><span class="item-dot"></span>بريمير / همر - رجالي</li>
+        <li class="perfume-item"><span class="item-number">321</span><span class="item-dot"></span>سترونغر وذ يو - رجالي</li>
+        <li class="perfume-item"><span class="item-number">322</span><span class="item-dot"></span>آيروس - رجالي</li>
+        <li class="perfume-item"><span class="item-number">323</span><span class="item-dot"></span>سترونغر انتنسلي</li>
+        <li class="perfume-item"><span class="item-number">324</span><span class="item-dot"></span>فوياج - رجالي</li>
+        <li class="perfume-item"><span class="item-number">325</span><span class="item-dot"></span>لومال الكسير</li>
+        <li class="perfume-item"><span class="item-number">326</span><span class="item-dot"></span>vip black - رجالي</li>
+        <li class="perfume-item"><span class="item-number">327</span><span class="item-dot"></span>وان مليون - رجالي</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            // إزالة التشكيل (الفتحة، الكسرة، الضمة، السكون، الشدة، التنوين)
-            text = text.replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED]/g, '');
+<!-- ============ كونتوار نسائي ============ -->
+<div class="category-card" data-type="counter-women">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-store"></i></div>
+      <div class="title-text"><h3>كونتوار نسائي</h3><span class="subtitle">الأصناف المعروضة</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">328</span><span class="item-dot"></span>شانص اوتندر Chanel - نسائي</li>
+        <li class="perfume-item"><span class="item-number">329</span><span class="item-dot"></span>فنتازيا</li>
+        <li class="perfume-item"><span class="item-number">330</span><span class="item-dot"></span>جادور - نسائي</li>
+        <li class="perfume-item"><span class="item-number">331</span><span class="item-dot"></span>لافي بل</li>
+        <li class="perfume-item"><span class="item-number">332</span><span class="item-dot"></span>سكسي 212 - نسائي</li>
+        <li class="perfume-item"><span class="item-number">333</span><span class="item-dot"></span>كوكو شانيل / مادموزيل - نسائي</li>
+        <li class="perfume-item"><span class="item-number">334</span><span class="item-dot"></span>بربري هير - نسائي</li>
+        <li class="perfume-item"><span class="item-number">335</span><span class="item-dot"></span>بومب شيل - نسائي</li>
+        <li class="perfume-item"><span class="item-number">336</span><span class="item-dot"></span>بارادوكس</li>
+        <li class="perfume-item"><span class="item-number">337</span><span class="item-dot"></span>نسائي - Ysl مون باريس</li>
+        <li class="perfume-item"><span class="item-number">338</span><span class="item-dot"></span>كيالي مارشملو - نسائي</li>
+        <li class="perfume-item"><span class="item-number">339</span><span class="item-dot"></span>روج - رالف رولين - نسائي</li>
+        <li class="perfume-item"><span class="item-number">340</span><span class="item-dot"></span>غود غيرل Ch</li>
+        <li class="perfume-item"><span class="item-number">341</span><span class="item-dot"></span>تاج سنسيت سكادة - نسائي</li>
+        <li class="perfume-item"><span class="item-number">342</span><span class="item-dot"></span>لوف اذ هفن</li>
+        <li class="perfume-item"><span class="item-number">343</span><span class="item-dot"></span>لابومبا</li>
+        <li class="perfume-item"><span class="item-number">344</span><span class="item-dot"></span>لابيل Jpg</li>
+        <li class="perfume-item"><span class="item-number">345</span><span class="item-dot"></span>بربري بودي</li>
+        <li class="perfume-item"><span class="item-number">346</span><span class="item-dot"></span>مدام غوتيه</li>
+        <li class="perfume-item"><span class="item-number">347</span><span class="item-dot"></span>مون سباركل سكادة - نسائي</li>
+        <li class="perfume-item"><span class="item-number">348</span><span class="item-dot"></span>اوشن لونج Skada</li>
+        <li class="perfume-item"><span class="item-number">349</span><span class="item-dot"></span>فلنتينو</li>
+        <li class="perfume-item"><span class="item-number">350</span><span class="item-dot"></span>بيكوز اتس يو ارماني - نسائي</li>
+        <li class="perfume-item"><span class="item-number">351</span><span class="item-dot"></span>فوالا قصة</li>
+        <li class="perfume-item"><span class="item-number">352</span><span class="item-dot"></span>شانيل 5</li>
+        <li class="perfume-item"><span class="item-number">353</span><span class="item-dot"></span>مسك ابيض</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            // إزالة المسافات الزائدة
-            text = text.replace(/\s+/g, ' ').trim();
+<!-- ============ حويجلات دهبية ============ -->
+<div class="category-card" data-type="oriental">
+  <div class="category-title" onclick="toggleCard(this)">
+    <div class="title-right">
+      <div class="title-icon"><i class="fas fa-star"></i></div>
+      <div class="title-text"><h3>حويجلات دهبية</h3><span class="subtitle">عطور شرقية فاخرة</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;"><span class="item-count"></span><i class="fas fa-chevron-down toggle-icon"></i></div>
+  </div>
+  <div class="category-body">
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 1</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">252</span><span class="item-dot"></span>لابيدوس Ted</li>
+        <li class="perfume-item"><span class="item-number">253</span><span class="item-dot"></span>ميغمار اورتو باريس</li>
+        <li class="perfume-item"><span class="item-number">254</span><span class="item-dot"></span>بلاك اوركيد Tm</li>
+        <li class="perfume-item"><span class="item-number">255</span><span class="item-dot"></span>لورد جورج Tragedy</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 2</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">256</span><span class="item-dot"></span>شهرة</li>
+        <li class="perfume-item"><span class="item-number">257</span><span class="item-dot"></span>عقدة 40</li>
+        <li class="perfume-item"><span class="item-number">258</span><span class="item-dot"></span>شمس الامارات Private</li>
+        <li class="perfume-item"><span class="item-number">259</span><span class="item-dot"></span>توسكان لذر Tm</li>
+        <li class="perfume-item"><span class="item-number">260</span><span class="item-dot"></span>كينغ لينا</li>
+        <li class="perfume-item"><span class="item-number">261</span><span class="item-dot"></span>ريد توباكو</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 3</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">262</span><span class="item-dot"></span>عنبر رومانس Victorias</li>
+        <li class="perfume-item"><span class="item-number">263</span><span class="item-dot"></span>فويس اوف ذا سنك Gucci</li>
+        <li class="perfume-item"><span class="item-number">264</span><span class="item-dot"></span>عنبر نوماد Tm</li>
+        <li class="perfume-item"><span class="item-number">265</span><span class="item-dot"></span>ديلينا Pdm</li>
+        <li class="perfume-item"><span class="item-number">266</span><span class="item-dot"></span>اصفهان Cd private</li>
+        <li class="perfume-item"><span class="item-number">267</span><span class="item-dot"></span>وصال Ajmal</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 4</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">268</span><span class="item-dot"></span>فاير بلاس M&MReplica</li>
+        <li class="perfume-item"><span class="item-number">269</span><span class="item-dot"></span>مضاوي Ajmal</li>
+        <li class="perfume-item"><span class="item-number">270</span><span class="item-dot"></span>تيروني Ortoparisi</li>
+        <li class="perfume-item"><span class="item-number">271</span><span class="item-dot"></span>ايمرالد</li>
+        <li class="perfume-item"><span class="item-number">272</span><span class="item-dot"></span>بخور عرائس</li>
+        <li class="perfume-item"><span class="item-number">273</span><span class="item-dot"></span>روز فانيل</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 5</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">274</span><span class="item-dot"></span>لوست شيري / توم فورد</li>
+        <li class="perfume-item"><span class="item-number">275</span><span class="item-dot"></span>خمرة</li>
+        <li class="perfume-item"><span class="item-number">276</span><span class="item-dot"></span>خمرة قهوة Lattafa</li>
+        <li class="perfume-item"><span class="item-number">277</span><span class="item-dot"></span>عنبر عود Ajmal</li>
+        <li class="perfume-item"><span class="item-number">278</span><span class="item-dot"></span>هيدسون قصة - رجالي</li>
+        <li class="perfume-item"><span class="item-number">279</span><span class="item-dot"></span>لالونا / قصة</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 6</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">280</span><span class="item-dot"></span>ماركوجا Masioncrivile</li>
+        <li class="perfume-item"><span class="item-number">281</span><span class="item-dot"></span>عود هندي Arabianoud</li>
+        <li class="perfume-item"><span class="item-number">282</span><span class="item-dot"></span>عود ابيض Ajmal</li>
+        <li class="perfume-item"><span class="item-number">283</span><span class="item-dot"></span>ماجيك Aljazeera</li>
+        <li class="perfume-item"><span class="item-number">284</span><span class="item-dot"></span>عود سلطان Arabianoud</li>
+        <li class="perfume-item"><span class="item-number">285</span><span class="item-dot"></span>عود بوكيه Lancome</li>
+        <li class="perfume-item"><span class="item-number">286</span><span class="item-dot"></span>عود كاشمير</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 7</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">287</span><span class="item-dot"></span>بكرات روج Mfk</li>
+        <li class="perfume-item"><span class="item-number">288</span><span class="item-dot"></span>امبريال فاليه Gissah</li>
+        <li class="perfume-item"><span class="item-number">289</span><span class="item-dot"></span>مسك اسود</li>
+        <li class="perfume-item"><span class="item-number">290</span><span class="item-dot"></span>كلمات Ajmal</li>
+        <li class="perfume-item"><span class="item-number">291</span><span class="item-dot"></span>عود فرغرتنس</li>
+        <li class="perfume-item"><span class="item-number">292</span><span class="item-dot"></span>عود كامبودي</li>
+      </ul>
+    </div>
+    <div class="rack-group">
+      <div class="rack-title"><i class="fas fa-layer-group"></i> الرف 8</div>
+      <ul class="perfume-list">
+        <li class="perfume-item"><span class="item-number">293</span><span class="item-dot"></span>اربا بورا Xerjoof</li>
+        <li class="perfume-item"><span class="item-number">294</span><span class="item-dot"></span>مسكر روز</li>
+        <li class="perfume-item"><span class="item-number">295</span><span class="item-dot"></span>فلور مسك Narsico</li>
+        <li class="perfume-item"><span class="item-number">296</span><span class="item-dot"></span>سلك مسك</li>
+        <li class="perfume-item"><span class="item-number">297</span><span class="item-dot"></span>مسك ابيض</li>
+        <li class="perfume-item"><span class="item-number">298</span><span class="item-dot"></span>حريم السلطان Ajmal</li>
+        <li class="perfume-item"><span class="item-number">299</span><span class="item-dot"></span>ميدنايت روز Lancome</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            return text;
+<div id="noResults">
+  <div class="no-results-icon"><i class="fas fa-search"></i></div>
+  <h3>لم يتم العثور على نتائج</h3>
+  <p>يرجى التأكد من إملاء اسم العطر أو جرّب كلمة مختلفة</p>
+</div>
+
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+<div class="footer"><p>أصناف الاسانس بالسكيلاند</p></div>
+
+<script>
+function normalizeArabic(text) {
+  text = text.toLowerCase();
+  text = text.replace(/[أإآٱٲٳءاٴ]/g, 'ا');
+  text = text.replace(/ة/g, 'ه');
+  text = text.replace(/ى/g, 'ي');
+  text = text.replace(/ؤ/g, 'و');
+  text = text.replace(/ئ/g, 'ي');
+  text = text.replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED]/g, '');
+  text = text.replace(/\s+/g, ' ').trim();
+  return text;
+}
+
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 8 + 's';
+    particle.style.animationDuration = (6 + Math.random() * 6) + 's';
+    particle.style.width = (2 + Math.random() * 4) + 'px';
+    particle.style.height = particle.style.width;
+    container.appendChild(particle);
+  }
+}
+createParticles();
+
+function updateStats() {
+  const allItems = document.querySelectorAll('.perfume-item');
+  const categories = document.querySelectorAll('.category-card');
+  const menCards = document.querySelectorAll('[data-type="men"], [data-type="counter-men"]');
+  const womenCards = document.querySelectorAll('[data-type="women"], [data-type="counter-women"]');
+
+  let menCount = 0;
+  let womenCount = 0;
+  menCards.forEach(card => { menCount += card.querySelectorAll('.perfume-item').length; });
+  womenCards.forEach(card => { womenCount += card.querySelectorAll('.perfume-item').length; });
+
+  animateNumber('totalCount', allItems.length);
+  animateNumber('categoryCount', categories.length);
+  animateNumber('menCount', menCount);
+  animateNumber('womenCount', womenCount);
+
+  categories.forEach(card => {
+    const count = card.querySelectorAll('.perfume-item').length;
+    card.querySelector('.item-count').textContent = count + ' عطر';
+  });
+}
+
+function animateNumber(elementId, target) {
+  const el = document.getElementById(elementId);
+  let current = 0;
+  const duration = 1500;
+  const step = target / (duration / 16);
+  function update() {
+    current += step;
+    if (current >= target) { el.textContent = target; return; }
+    el.textContent = Math.floor(current);
+    requestAnimationFrame(update);
+  }
+  update();
+}
+updateStats();
+
+function toggleCard(titleElement) {
+  const card = titleElement.closest('.category-card');
+  card.classList.toggle('collapsed');
+}
+
+let currentFilter = 'all';
+
+function searchPerfumes() {
+  let rawInput = document.getElementById('searchInput').value.trim();
+  let input = normalizeArabic(rawInput);
+  let categories = document.querySelectorAll('.category-card');
+  let hasGlobalResult = false;
+  let noResultsMsg = document.getElementById('noResults');
+  let totalResults = 0;
+  let clearBtn = document.getElementById('clearBtn');
+  let searchInfo = document.getElementById('searchResultsInfo');
+
+  if (rawInput.length > 0) { clearBtn.classList.add('visible'); }
+  else { clearBtn.classList.remove('visible'); }
+
+  categories.forEach(category => {
+    let type = category.getAttribute('data-type');
+    if (currentFilter !== 'all' && type !== currentFilter) {
+      category.style.display = "none";
+      return;
+    }
+
+    let hasVisibleItemInCategory = false;
+    let rackGroups = category.querySelectorAll('.rack-group');
+
+    rackGroups.forEach(rack => {
+      let items = rack.querySelectorAll('.perfume-item');
+      let hasVisibleInRack = false;
+
+      items.forEach(item => {
+        let text = normalizeArabic(item.textContent);
+        if (text.includes(input)) {
+          item.style.display = "";
+          hasVisibleInRack = true;
+          hasVisibleItemInCategory = true;
+          totalResults++;
+          if (input.length > 0) { item.classList.add('highlight'); }
+          else { item.classList.remove('highlight'); }
+        } else {
+          item.style.display = "none";
+          item.classList.remove('highlight');
         }
+      });
 
-        // ============================
-        // إنشاء الجزيئات المتحركة
-        // ============================
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (6 + Math.random() * 6) + 's';
-                particle.style.width = (2 + Math.random() * 4) + 'px';
-                particle.style.height = particle.style.width;
-                container.appendChild(particle);
-            }
-        }
-        createParticles();
+      rack.style.display = hasVisibleInRack ? "" : "none";
+    });
 
-        // ============================
-        // حساب الإحصائيات
-        // ============================
-        function updateStats() {
-            const allItems = document.querySelectorAll('.perfume-item');
-            const categories = document.querySelectorAll('.category-card');
-            const menCards = document.querySelectorAll('[data-type="men"], [data-type="counter-men"]');
-            const womenCards = document.querySelectorAll('[data-type="women"], [data-type="counter-women"]');
+    if (hasVisibleItemInCategory) {
+      category.style.display = "";
+      if (input.length > 0) { category.classList.remove('collapsed'); }
+      hasGlobalResult = true;
+    } else {
+      category.style.display = "none";
+    }
+  });
 
-            let menCount = 0;
-            let womenCount = 0;
+  if (input.length > 0) {
+    document.getElementById('resultsCount').textContent = totalResults;
+    searchInfo.classList.add('visible');
+  } else {
+    searchInfo.classList.remove('visible');
+  }
 
-            menCards.forEach(card => { menCount += card.querySelectorAll('.perfume-item').length; });
-            womenCards.forEach(card => { womenCount += card.querySelectorAll('.perfume-item').length; });
+  noResultsMsg.style.display = (hasGlobalResult || input.length === 0) ? "none" : "block";
+}
 
-            animateNumber('totalCount', allItems.length);
-            animateNumber('categoryCount', categories.length);
-            animateNumber('menCount', menCount);
-            animateNumber('womenCount', womenCount);
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('clearBtn').classList.remove('visible');
+  document.getElementById('searchResultsInfo').classList.remove('visible');
+  filterCategory(currentFilter, document.querySelector('.filter-btn.active'));
+}
 
-            categories.forEach(card => {
-                const count = card.querySelectorAll('.perfume-item').length;
-                card.querySelector('.item-count').textContent = count + ' عطر';
-            });
-        }
+function filterCategory(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
 
-        function animateNumber(elementId, target) {
-            const el = document.getElementById(elementId);
-            let current = 0;
-            const duration = 1500;
-            const step = target / (duration / 16);
-            function update() {
-                current += step;
-                if (current >= target) { el.textContent = target; return; }
-                el.textContent = Math.floor(current);
-                requestAnimationFrame(update);
-            }
-            update();
-        }
+  let input = document.getElementById('searchInput').value.trim();
 
-        updateStats();
-
-        // ============================
-        // طي/فتح البطاقات
-        // ============================
-        function toggleCard(titleElement) {
-            const card = titleElement.closest('.category-card');
-            card.classList.toggle('collapsed');
-        }
-
-        // ============================
-        // البحث الذكي (مع توحيد الحروف)
-        // ============================
-        let currentFilter = 'all';
-
-        function searchPerfumes() {
-            let rawInput = document.getElementById('searchInput').value.trim();
-            let input = normalizeArabic(rawInput);
-            let categories = document.querySelectorAll('.category-card');
-            let hasGlobalResult = false;
-            let noResultsMsg = document.getElementById('noResults');
-            let totalResults = 0;
-            let clearBtn = document.getElementById('clearBtn');
-            let searchInfo = document.getElementById('searchResultsInfo');
-
-            // إظهار/إخفاء زر المسح
-            if (rawInput.length > 0) {
-                clearBtn.classList.add('visible');
-            } else {
-                clearBtn.classList.remove('visible');
-            }
-
-            categories.forEach(category => {
-                let type = category.getAttribute('data-type');
-                if (currentFilter !== 'all' && type !== currentFilter) {
-                    category.style.display = "none";
-                    return;
-                }
-
-                let items = category.querySelectorAll('.perfume-item');
-                let hasVisibleItem = false;
-
-                items.forEach(item => {
-                    // تطبيق التوحيد على نص العنصر أيضاً
-                    let text = normalizeArabic(item.textContent);
-
-                    if (text.includes(input)) {
-                        item.style.display = "";
-                        hasVisibleItem = true;
-                        totalResults++;
-
-                        if (input.length > 0) {
-                            item.classList.add('highlight');
-                        } else {
-                            item.classList.remove('highlight');
-                        }
-                    } else {
-                        item.style.display = "none";
-                        item.classList.remove('highlight');
-                    }
-                });
-
-                if (hasVisibleItem) {
-                    category.style.display = "";
-                    if (input.length > 0) {
-                        category.classList.remove('collapsed');
-                    }
-                    hasGlobalResult = true;
-                } else {
-                    category.style.display = "none";
-                }
-            });
-
-            // عرض عدد النتائج
-            if (input.length > 0) {
-                document.getElementById('resultsCount').textContent = totalResults;
-                searchInfo.classList.add('visible');
-            } else {
-                searchInfo.classList.remove('visible');
-            }
-
-            if (hasGlobalResult || input.length === 0) {
-                noResultsMsg.style.display = "none";
-            } else {
-                noResultsMsg.style.display = "block";
-            }
-        }
-
-        // ============================
-        // مسح البحث
-        // ============================
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('clearBtn').classList.remove('visible');
-            document.getElementById('searchResultsInfo').classList.remove('visible');
-            searchPerfumes();
-            // إعادة عرض حسب الفلتر الحالي
-            filterCategory(currentFilter, document.querySelector('.filter-btn.active'));
-        }
-
-        // ============================
-        // فلتر الأقسام
-        // ============================
-        function filterCategory(type, btn) {
-            currentFilter = type;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            if (btn) btn.classList.add('active');
-
-            let input = document.getElementById('searchInput').value.trim();
-
-            if (input.length > 0) {
-                searchPerfumes();
-            } else {
-                document.querySelectorAll('.category-card').forEach(card => {
-                    let cardType = card.getAttribute('data-type');
-                    if (type === 'all' || cardType === type) {
-                        card.style.display = '';
-                        // إعادة إظهار كل العناصر
-                        card.querySelectorAll('.perfume-item').forEach(item => {
-                            item.style.display = '';
-                            item.classList.remove('highlight');
-                        });
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                document.getElementById('noResults').style.display = 'none';
-            }
-        }
-
-        // ============================
-        // زر العودة للأعلى
-        // ============================
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('backToTop');
-            if (window.scrollY > 400) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
+  if (input.length > 0) {
+    searchPerfumes();
+  } else {
+    document.querySelectorAll('.category-card').forEach(card => {
+      let cardType = card.getAttribute('data-type');
+      if (type === 'all' || cardType === type) {
+        card.style.display = '';
+        card.querySelectorAll('.rack-group').forEach(r => r.style.display = '');
+        card.querySelectorAll('.perfume-item').forEach(item => {
+          item.style.display = '';
+          item.classList.remove('highlight');
         });
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.getElementById('noResults').style.display = 'none';
+  }
+}
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backToTop');
+  if (window.scrollY > 400) { btn.classList.add('visible'); }
+  else { btn.classList.remove('visible'); }
+});
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
